@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <h:form id="helloworld-form">
+
+        <p:panel header="Add Site Managers">
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="First Name: " />
+                <p:inputText id="first-name" value="#{homeController.siteManager.firstName}" />
+
+                <h:outputText value="Last Name: " />
+                <p:inputText id="last-name" value="#{homeController.siteManager.lastName}" />
+
+                <h:outputText value="address: " />
+                <p:inputText id="address" value="#{homeController.siteManager.address}" />
+
+                <h:outputText value="email: " />
+                <p:inputText id="email" value="#{homeController.siteManager.email}" />
+
+                <h:outputText value="phone: " />
+                <p:inputText id="phone" value="#{homeController.siteManager.phone}" />
+
+                <p:commandButton id="submit" value="Add Employee" action="#{homeController.addNewManager}" />
+            </h:panelGrid>
+        </p:panel>
+
+
+    </h:form>
+</body>
+</html>
