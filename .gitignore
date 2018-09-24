@@ -25,3 +25,5 @@
 /.nb-gradle/
 
 target/
+mvnw
+mvnw.cmd
