@@ -6,10 +6,16 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -21,30 +27,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
 
 
-//        http.formLogin().loginPage("/login.xhtml").permitAll()
-//                .failureUrl("/login.xhtml?error=true");
-//
-//        http.logout().logoutSuccessUrl("/login.xhtml");
-//
+        http.formLogin().loginPage("/login.xhtml").permitAll()
+                .failureUrl("/login.xhtml?error=true");
+
+        http.logout().logoutSuccessUrl("/login.xhtml");
+
         http.csrf().disable();
     }
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("john.doe")
-                .password("1234").roles("USER")
-                .and()
-                .withUser("jane.doe")
-                .password("5678").roles("ADMIN");
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .usersByUsernameQuery("select email as username, password, enabled from user where email=?")
+                .authoritiesByUsernameQuery("select email as username, role from role r where r.email=?");
     }
 
-
-    @SuppressWarnings("deprecation")
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder() {
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
 
 }

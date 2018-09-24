@@ -8,12 +8,14 @@
 
 
 <h:head>
-    <title>PrimeFaces Hello World Example</title>
+    <title>Procurement System</title>
     <h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
-
+    <sec:authorize access="isAuthenticated()" >
+        <h1>Logged In</h1>
+    </sec:authorize>
     <div class="ui-g">
         <div class="ui-g-12 ui-md-12 proc-topbar">
             Top Bar
@@ -31,7 +33,6 @@
             Footer
         </div>
     </div>
-
 </h:body>
 
 </html>

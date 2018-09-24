@@ -13,8 +13,27 @@
 <body>
     <ui:composition template="../template.xhtml">
         <ui:define name="content">
-            <h1>ASJFKAS</h1>
-            <ui:include src="add_employee.xhtml"></ui:include>
+            <h1> Employees </h1>
+
+            <p:commandButton value="Add Site Manager" type="button" onclick="PF('addSiteManagersModal').show();" />
+            <ui:include src="../management/add_employee.xhtml"></ui:include>
+                <p:dataTable var="siteManager" value="#{homeController.getSiteMangers()}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{siteManager.id}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{siteManager.email}" />
+                    </p:column>
+
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{siteManager.firstName}" />
+                    </p:column>
+
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{siteManager.lastName}" />
+                    </p:column>
+                </p:dataTable>
         </ui:define>
     </ui:composition>
 </body>
