@@ -1,10 +1,14 @@
 package lk.sliit.csse.procurementsystem.models;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -17,12 +21,28 @@ Ordered_Items(itemId, orderRef, itemQty)
 Items(itemId, itemName, categoryId, price)
 Category(categoryId, name)
  */
-@Entity
+@Entity(name="Order")
+@Table(name="orders")
 public class Order {
 
-      @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String orderRef;
+    /**
+     * @return the itemQty
+     */
+    public int getItemQty() {
+        return itemQty;
+    }
+
+    /**
+     * @param itemQty the itemQty to set
+     */
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
+
+   
+       @Id
+       @GeneratedValue(strategy = GenerationType.AUTO)
+    private int orderRef;
     private Date orderedDate;
     private Date endDate;
     private int siteMangerId;
@@ -31,18 +51,22 @@ public class Order {
     private int supplierId;
     private String supplierStatus;
     private double totalPrice;
+        private int itemQty;
+
+    @OneToMany(mappedBy="itemName")
+    private List<Items> items;
     
     /**
      * @return the orderRef
      */
-    public String getOrderRef() {
+    public int getOrderRef() {
         return orderRef;
     }
 
     /**
      * @param orderRef the orderRef to set
      */
-    public void setOrderRef(String orderRef) {
+    public void setOrderRef(int orderRef) {
         this.orderRef = orderRef;
     }
 
@@ -156,6 +180,20 @@ public class Order {
      */
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    /**
+     * @return the items
+     */
+    public List<Items> getItems() {
+        return items;
+    }
+
+    /**
+     * @param items the items to set
+     */
+    public void setItems(List<Items> items) {
+        this.items = items;
     }
 
 }

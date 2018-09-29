@@ -15,6 +15,7 @@
  */
 package lk.sliit.csse.procurementsystem.models;
 
+import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
@@ -23,7 +24,8 @@ import javax.persistence.*;
  *
  * @author Marjan
  */
-@Entity
+@Entity(name="Items")
+@Table(name="items")
 public class Items {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +33,8 @@ public class Items {
     private String itemName;
     private String categoryId;
     private Float price;
+  
+//    private List<Order> orderRef;
     /**
      * @return the itemId
      */

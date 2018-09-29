@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.inject.Named;
 import java.util.List;
+import lk.sliit.csse.procurementsystem.models.Category;
 import lk.sliit.csse.procurementsystem.models.Order;
-import lk.sliit.csse.procurementsystem.models.OrderedItems;
 import lk.sliit.csse.procurementsystem.models.Items;
+import lk.sliit.csse.procurementsystem.repositories.CategoryRepository;
 import lk.sliit.csse.procurementsystem.repositories.ItemsRepository;
 import lk.sliit.csse.procurementsystem.repositories.OrderRepository;
-import lk.sliit.csse.procurementsystem.repositories.OrderedItemsRepository;
 
 
 @Data
@@ -24,18 +24,18 @@ import lk.sliit.csse.procurementsystem.repositories.OrderedItemsRepository;
 public class SiteManagerController {
 
     private Order order = new Order();
-    private OrderedItems orderedItems = new OrderedItems();
     private Items items = new Items();
+    private Category category = new Category();
     
 //    @Autowired
     private OrderRepository orderRepository;
 
 //    @Autowired
-    private OrderedItemsRepository orderedItemsRepository;
 
 //    @Autowired
     private ItemsRepository itemsRepository;
 
+    private CategoryRepository categoryRepository;
     
 //    public boolean addNewManager() {
 //        siteManager.setEnabled(true);
@@ -44,16 +44,7 @@ public class SiteManagerController {
 //        this.siteManager = new SiteManager();
 //        return true;
 //    }
-       public boolean addOrder(){
-//           orderRepository.save(order);
-           orderedItemsRepository.save(orderedItems);
-           
-//           this.items = new Items();
-           this.orderedItems = new OrderedItems();
-           
-//           this.order = new Order();
-           return true;
-       }
+    
 //    public void addNewProcurementStaff() {
 //        procurementStaff.setEnabled(true);
 //        procurementStaffRepository.save(procurementStaff);
