@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2018 JoinFaces.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+/*
+Orders(orderRef, orderedDate, endDate, siteMangerId, siteManagerStatus, managementStatus, supplierId,supplierStatus, totalPrice)
+Ordered_Items(itemId, orderRef, itemQty)
+Items(itemId, itemName, categoryId, price)
+Category(categoryId, name)
+ */
+
+-->
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+    <head>
+        <title>add order</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div>Add new order</div>
+        <p:dialog header="Add Order" widgetVar="addOrderModal" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-order-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="Item Name " />
+                <p:inputText id="add-order-first-name" value="#{siteManagerController.order.firstName}" />
+
+                <h:outputText value="Item Qty: " />
+                <p:inputText id="add-order-qty" value="#{siteManagerController.order.lastName}" />
+
+                <h:outputText value="End date: " />
+                <p:inputText id="add-order-end-date" value="#{siteManagerController.order.endDate}" />
+
+               
+
+                <p:commandButton id="add-order-submit" value="Add Employee" ajax="false" action="#{siteManager.addOrder}" />
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+    </body>
+</html>
