@@ -15,49 +15,54 @@
  */
 package lk.sliit.csse.procurementsystem.models;
 
-import java.util.List;
-import javax.persistence.*;
-
 /**
  *
  * @author Marjan
  */
-@Entity(name="Category")
-@Table(name="category")
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    
-    private int cateogryId;
-    private String name;
-    @OneToMany(mappedBy="itemName")
-    private List<Items> itemName;
+public class OrderedItems {
 
     /**
-     * @return the cateogryId
+     * @return the orderRef
      */
-    public int getCateogryId() {
-        return cateogryId;
+    public int getOrderRef() {
+        return orderRef;
     }
 
     /**
-     * @param cateogryId the cateogryId to set
+     * @param orderRef the orderRef to set
      */
-    public void setCateogryId(int cateogryId) {
-        this.cateogryId = cateogryId;
+    public void setOrderRef(int orderRef) {
+        this.orderRef = orderRef;
     }
 
     /**
-     * @return the itemName
+     * @return the itemId
      */
-    public List<Items> getItemName() {
-        return itemName;
+    public int getItemId() {
+        return itemId;
     }
 
     /**
-     * @param itemName the itemName to set
+     * @param itemId the itemId to set
      */
-    public void setItemName(List<Items> itemName) {
-        this.itemName = itemName;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
+
+    /**
+     * @return the itemQty
+     */
+    public int getItemQty() {
+        return itemQty;
+    }
+
+    /**
+     * @param itemQty the itemQty to set
+     */
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
+    private int orderRef;
+    private int itemId;
+    private int itemQty;
 }

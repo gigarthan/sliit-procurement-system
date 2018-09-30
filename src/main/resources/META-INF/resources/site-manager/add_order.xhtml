@@ -42,15 +42,37 @@ Category(categoryId, name)
 
         <p:panel >
             <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="Item Name " />
-                <p:inputText id="add-order-item-name" value="#{siteManagerController.items.itemName}" />
+                 <h:outputText value="Supplier Name " />
+                <p:inputText id="order-ref" value="#{siteManagerController.getOrderById}" />
+                
+                <h:outputText value="Supplier Name " />
+                <p:inputMask id="add-order-item-name" mask="{999}" value="#{siteManagerController.order.supplierId}" />
 
                 <h:outputText value="Item Qty " />
-                <p:inputText id="add-order-qty" value="#{siteManagerController.orderedItems.itemQty}" />
+                <p:inputText id="add-order-qty" required="true" value="#{siteManagerController.order.itemQty}" />
+                
+                 <h:outputText value="Site manager Id " />
+                <p:inputText id="site-manager-id" value="#{siteManagerController.order.siteMangerId}" />
 
                 <h:outputText value="End date: " />
-                <p:calendar id="add-order-end-date" value="#{siteManagerController.order.endDate}" mode="popup" />
+                <p:calendar id="add-order-end-date" value="#{siteManagerController.order.endDate}"  mode="popup" />
+                   
+                <h:outputText value="Order date: " />
+                <p:calendar id="add-order-order-date" value="#{siteManagerController.order.orderedDate}" mode="popup" />
+                   
+                <h:outputText value="Total price" />
+                <p:inputText id="total-price" value="#{siteManagerController.order.totalPrice}" />
 
+                
+                
+                
+                
+<!--    private Date orderedDate;
+    private Date endDate;
+    private int siteMangerId;
+    private String siteManagerStatus;
+    private String managementStatus;
+    private String supplierStatus;-->
                 <p:commandButton id="add-order-submit" value="Submit Order" ajax="false" action="#{siteManagerController.addOrder}" />
                             
                 

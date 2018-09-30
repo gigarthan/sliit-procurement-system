@@ -28,21 +28,21 @@ public class Order {
     /**
      * @return the itemQty
      */
-    public int getItemQty() {
-        return itemQty;
-    }
-
-    /**
-     * @param itemQty the itemQty to set
-     */
-    public void setItemQty(int itemQty) {
-        this.itemQty = itemQty;
-    }
+//    public int getItemQty() {
+//        return itemQty;
+//    }
+//
+//    /**
+//     * @param itemQty the itemQty to set
+//     */
+//    public void setItemQty(int itemQty) {
+//        this.itemQty = itemQty;
+//    }
 
    
        @Id
        @GeneratedValue(strategy = GenerationType.AUTO)
-    private int orderRef;
+    private long orderRef;
     private Date orderedDate;
     private Date endDate;
     private int siteMangerId;
@@ -51,22 +51,24 @@ public class Order {
     private int supplierId;
     private String supplierStatus;
     private double totalPrice;
-        private int itemQty;
+//    private int itemQty;
+    
 
-    @OneToMany(mappedBy="itemName")
-    private List<Items> items;
+//    @OneToMany(mappedBy="itemName")
+//    private List<Items> items;
+    
     
     /**
      * @return the orderRef
      */
-    public int getOrderRef() {
+    public long getOrderRef() {
         return orderRef;
     }
 
     /**
      * @param orderRef the orderRef to set
      */
-    public void setOrderRef(int orderRef) {
+    public void setOrderRef(long orderRef) {
         this.orderRef = orderRef;
     }
 
@@ -185,15 +187,15 @@ public class Order {
     /**
      * @return the items
      */
-    public List<Items> getItems() {
-        return items;
-    }
-
-    /**
-     * @param items the items to set
-     */
-    public void setItems(List<Items> items) {
-        this.items = items;
-    }
+//    public List<Items> getItems() {
+//        return items;
+//    }
+//
+//    /**
+//     * @param items the items to set
+//     */
+//    public void setItems(List<Items> items) {
+//        this.items = items;
+//    }
 
 }
