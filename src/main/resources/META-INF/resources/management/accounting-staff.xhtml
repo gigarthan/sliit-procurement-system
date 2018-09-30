@@ -17,6 +17,7 @@
 
         <p:commandButton value="Add Site Manager" type="button" onclick="PF('addAccountingStaffModal').show();" />
         <ui:include src="add_employee.xhtml" />
+
         <p:dataTable var="accountingStaff" value="#{managementController.getAccountingStaffs()}">
             <p:column headerText="Id">
                 <h:outputText value="#{accountingStaff.id}" />

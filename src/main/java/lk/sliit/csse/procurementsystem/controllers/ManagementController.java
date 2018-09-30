@@ -50,7 +50,7 @@ public class ManagementController {
         this.accountingStaff = new AccountingStaff();
     }
 
-    public List<SiteManager> getSiteMangers() {
+    public List<SiteManager> getSiteManagers() {
         return siteManagerRepository.findAll();
     }
 
@@ -60,6 +60,10 @@ public class ManagementController {
 
     public List<ProcurementStaff> getProcurementStaffs() {
         return procurementStaffRepository.findAll();
+    }
+
+    public void deleteSiteManager(SiteManager sm) {
+        siteManagerRepository.delete(sm);
     }
 
 

@@ -33,6 +33,11 @@
             <p:column headerText="Last Name">
                 <h:outputText value="#{siteManager.lastName}" />
             </p:column>
+            <p:column>
+                <h:form>
+                <p:commandButton value="Delete" ajax="false" action="#{managementController.deleteSiteManager(siteManager)}" />
+                </h:form>
+            </p:column>
         </p:dataTable>
     </ui:define>
 </ui:composition>
