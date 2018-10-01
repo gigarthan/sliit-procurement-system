@@ -40,12 +40,14 @@ public class ManagementController {
 
     public void addNewProcurementStaff() {
         procurementStaff.setEnabled(true);
+        procurementStaff.setPassword(new BCryptPasswordEncoder().encode("1234"));
         procurementStaffRepository.save(procurementStaff);
         this.procurementStaff = new ProcurementStaff();
     }
 
     public void addNewAccountingStaff() {
         accountingStaff.setEnabled(true);
+        accountingStaff.setPassword(new BCryptPasswordEncoder().encode("1234"));
         accountingStaffRepository.save(accountingStaff);
         this.accountingStaff = new AccountingStaff();
     }
