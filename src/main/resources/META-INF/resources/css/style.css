@@ -1,9 +1,26 @@
+body {
+    margin: 0px;
+}
+
+.content-container {
+    margin: 5px;
+}
+
 .proc-topbar {
     width: 100%;
-    height: 100px;
+    height: 50px;
     background-color: #444444;
+    color: #ffffff;
 }
 
 .proc-sidebar {
     background-color: bisque;
+}
+
+.proc-footer {
+    height: 50px;
+    background-color: #444444;
+    margin-top: 10px;
+    color: #ffffff;
+    text-align: center;
 }
