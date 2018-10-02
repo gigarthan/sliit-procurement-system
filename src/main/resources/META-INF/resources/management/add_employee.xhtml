@@ -31,66 +31,11 @@
                 <h:outputText value="phone: " />
                 <p:inputText id="add-site-manager-phone" value="#{managementController.siteManager.phone}" />
 
-                <p:commandButton id="add-site-manager-submit" value="Add Employee" ajax="false" action="#{managementController.addNewManager}" />
+                <p:commandButton id="add-site-manager-submit" value="Add Employee" update="siteManagerTable" oncomplete="PF('addSiteManagersModal').hide()" action="#{managementController.addNewManager}" />
             </h:panelGrid>
         </p:panel>
 
     </h:form>
 </p:dialog>
-
-<p:dialog header="Add Procurement Staff" widgetVar="addProcurementStaffModal" showEffect="fade" hideEffect="fade" >
-    <h:form id="add-procurement-staff-form">
-
-        <p:panel >
-            <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="First Name: " />
-                <p:inputText id="add-procurement-staff-first-name" value="#{managementController.procurementStaff.firstName}" />
-
-                <h:outputText value="Last Name: " />
-                <p:inputText id="add-procurement-staff-last-name" value="#{managementController.procurementStaff.lastName}" />
-
-                <h:outputText value="address: " />
-                <p:inputText id="add-procurement-staff-address" value="#{managementController.procurementStaff.address}" />
-
-                <h:outputText value="email: " />
-                <p:inputText id="add-procurement-staff-email" value="#{managementController.procurementStaff.email}" />
-
-                <h:outputText value="phone: " />
-                <p:inputText id="add-procurement-staff-phone" value="#{managementController.procurementStaff.phone}" />
-
-                <p:commandButton id="add-procurement-staff-submit" value="Add Employee" ajax="false" action="#{managementController.addNewProcurementStaff}" />
-            </h:panelGrid>
-        </p:panel>
-
-    </h:form>
-</p:dialog>
-
-<p:dialog header="Add Accounting Staff" widgetVar="addAccountingStaffModal" showEffect="fade" hideEffect="fade" >
-    <h:form id="add-accounting-staff-form">
-
-        <p:panel >
-            <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="First Name: " />
-                <p:inputText id="add-accounting-staff-first-name" value="#{managementController.accountingStaff.firstName}" />
-
-                <h:outputText value="Last Name: " />
-                <p:inputText id="add-accounting-staff-last-name" value="#{managementController.accountingStaff.lastName}" />
-
-                <h:outputText value="address: " />
-                <p:inputText id="add-accounting-staff-address" value="#{managementController.accountingStaff.address}" />
-
-                <h:outputText value="email: " />
-                <p:inputText id="add-accounting-staff-email" value="#{managementController.accountingStaff.email}" />
-
-                <h:outputText value="phone: " />
-                <p:inputText id="add-accounting-staff-phone" value="#{managementController.accountingStaff.phone}" />
-
-                <p:commandButton id="add-accounting-staff-submit" value="Add Employee" ajax="false" action="#{managementController.addNewAccountingStaff}" />
-            </h:panelGrid>
-        </p:panel>
-
-    </h:form>
-</p:dialog>
-
 </body>
 </html>

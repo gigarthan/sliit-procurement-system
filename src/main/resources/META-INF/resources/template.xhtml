@@ -17,15 +17,14 @@
         <h1>Logged In</h1>
     </sec:authorize>
     <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 proc-topbar">
-            Top Bar
-        </div>
+        <ui:include src="/includes/topbar.xhtml" />
     </div>
     <div class="ui-g">
         <div class="ui-g-12 ui-md-12 ui-g-nopad content-container">
             <ui:insert name="content"></ui:insert>
         </div>
-
+    </div>
+    <div class="ui-g">
         <div class="ui-g-12 proc-footer">
             Footer
         </div>

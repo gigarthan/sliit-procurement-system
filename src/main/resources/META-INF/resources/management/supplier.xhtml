@@ -17,9 +17,9 @@
 
         <p:commandButton value="Add Suppliers" type="button" onclick="PF('addSuppliersModal').show();" />
         <div class="ui-g">
-            <div class="ui-g-6">
-                <p:dataTable var="supplier" value="#{managementSupplierController.getAllSuppliers()}">
-                    <p:column headerText="Id">
+            <div class="ui-g-10">
+                <p:dataTable var="supplier" id="supplierTable" value="#{managementSupplierController.getAllSuppliers()}">
+                    <p:column width="15" headerText="Id">
                         <h:outputText value="#{supplier.id}" />
                     </p:column>
 
@@ -36,7 +36,7 @@
                     </p:column>
                     <p:column>
                         <h:form>
-                            <p:commandButton value="Delete" ajax="false" action="#{managementSupplierController.deletesupplier(supplier)}" />
+                            <p:commandButton style="background-color: darkred;border: none" value="Delete" ajax="false" action="#{managementSupplierController.deleteSupplier(supplier)}" />
                         </h:form>
                     </p:column>
                 </p:dataTable>
@@ -51,19 +51,19 @@
                 <p:panel >
                     <h:panelGrid columns="2" cellpadding="4">
                         <h:outputText value=" Name: " />
-                        <p:inputText id="add-supplier-first-name" value="#{managementSupplierController.supplier.name}" />
+                        <p:inputText id="add-supplier-first-name" required="true" value="#{managementSupplierController.supplier.name}" />
 
                         <h:outputText value="Account Number: " />
-                        <p:inputText id="add-supplier-last-name" value="#{managementSupplierController.supplier.accountNo}" />
+                        <p:inputText id="add-supplier-last-name" required="true" value="#{managementSupplierController.supplier.accountNo}" />
 
 
                         <h:outputText value="Email: " />
-                        <p:inputText id="add-supplier-email" value="#{managementSupplierController.supplier.email}" />
+                        <p:inputText id="add-supplier-email" required="true" value="#{managementSupplierController.supplier.email}" />
 
                         <h:outputText value="Phone: " />
-                        <p:inputText id="add-supplier-phone" value="#{managementSupplierController.supplier.phone}" />
+                        <p:inputText id="add-supplier-phone" required="true" value="#{managementSupplierController.supplier.phone}" />
 
-                        <p:commandButton id="add-supplier-submit" value="Add Employee" ajax="false" action="#{managementSupplierController.addSupplier}" />
+                        <p:commandButton id="add-supplier-submit" value="Add Employee" validateClient="true" update="supplierTable" oncomplete="PF('addSuppliersModal').hide();"  action="#{managementSupplierController.addSupplier}" />
                     </h:panelGrid>
                 </p:panel>
 

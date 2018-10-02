@@ -30,7 +30,8 @@ public class ManagementSupplierController {
         this.supplier = new Supplier();
     }
 
-    public Supplier getSupplier() {
-        return supplier;
+    public void deleteSupplier(Supplier sup) {
+        supplierRepository.delete(sup);
     }
+
 }

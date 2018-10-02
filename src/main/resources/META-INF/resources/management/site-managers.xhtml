@@ -15,10 +15,10 @@
     <ui:define name="content">
         <h1> Site Managers </h1>
 
-        <p:commandButton value="Add Site Manager" type="button" onclick="PF('addSiteManagersModal').show();" />
+        <p:commandButton  value="Add Site Manager" type="button" onclick="PF('addSiteManagersModal').show();" />
         <ui:include src="add_employee.xhtml"></ui:include>
-        <p:dataTable var="siteManager" value="#{managementController.getSiteManagers()}">
-            <p:column headerText="Id">
+        <p:dataTable id="siteManagerTable" var="siteManager" value="#{managementController.getSiteManagers()}">
+            <p:column headerText="Id" width="15" >
                 <h:outputText value="#{siteManager.id}" />
             </p:column>
 
@@ -35,7 +35,7 @@
             </p:column>
             <p:column>
                 <h:form>
-                <p:commandButton value="Delete" ajax="false" action="#{managementController.deleteSiteManager(siteManager)}" />
+                <p:commandButton styleClass="proc-del-btn" value="Delete" ajax="false" action="#{managementController.deleteSiteManager(siteManager)}" />
                 </h:form>
             </p:column>
         </p:dataTable>
