@@ -13,18 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lk.sliit.csse.procurementsystem.services;
+package lk.sliit.csse.procurementsystem.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import lk.sliit.csse.procurementsystem.repositories.MaterialRequestRepository;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import lombok.Data;
 
 /**
  *
  * @author Marjan
  */
-@Service("orderService")
-public class OrderService {
-    @Autowired
-    private MaterialRequestRepository materialRequestRepository;
+@Entity
+@Table
+@Data
+public class ItemList {
+
+           @Id
+       @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    private long reqOrderNo;
+    private int itemId;
+    private int qty;
 }

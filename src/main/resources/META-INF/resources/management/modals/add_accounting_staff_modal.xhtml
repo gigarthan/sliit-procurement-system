@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<p:dialog header="Add Accounting Staff" widgetVar="addAccountingStaffModal" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-accounting-staff-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="First Name: " />
+                <p:inputText id="add-accounting-staff-first-name" value="#{managementController.accountingStaff.firstName}" />
+
+                <h:outputText value="Last Name: " />
+                <p:inputText id="add-accounting-staff-last-name" value="#{managementController.accountingStaff.lastName}" />
+
+                <h:outputText value="address: " />
+                <p:inputText id="add-accounting-staff-address" value="#{managementController.accountingStaff.address}" />
+
+                <h:outputText value="email: " />
+                <p:inputText id="add-accounting-staff-email" value="#{managementController.accountingStaff.email}" />
+
+                <h:outputText value="phone: " />
+                <p:inputText id="add-accounting-staff-phone" value="#{managementController.accountingStaff.phone}" />
+
+                <p:commandButton id="add-accounting-staff-submit" value="Add Employee" ajax="false" action="#{managementController.addNewAccountingStaff}" />
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+</body>
+</html>

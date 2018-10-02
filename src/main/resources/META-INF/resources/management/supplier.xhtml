@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Site Managers</title>
+</head>
+<body>
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h1> Suppliers </h1>
+
+        <p:commandButton value="Add Suppliers" type="button" onclick="PF('addSuppliersModal').show();" />
+        <div class="ui-g">
+            <div class="ui-g-10">
+                <p:dataTable var="supplier" id="supplierTable" value="#{managementSupplierController.getAllSuppliers()}">
+                    <p:column width="15" headerText="Id">
+                        <h:outputText value="#{supplier.id}" />
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{supplier.email}" />
+                    </p:column>
+
+                    <p:column headerText="First Name">
+                        <h:outputText value="#{supplier.name}" />
+                    </p:column>
+
+                    <p:column headerText="Last Name">
+                        <h:outputText value="#{supplier.phone}" />
+                    </p:column>
+                    <p:column>
+                        <h:form>
+                            <p:commandButton style="background-color: darkred;border: none" value="Delete" ajax="false" action="#{managementSupplierController.deleteSupplier(supplier)}" />
+                        </h:form>
+                    </p:column>
+                </p:dataTable>
+            </div>
+        </div>
+
+
+
+        <p:dialog header="Add Suppliers" widgetVar="addSuppliersModal" showEffect="fade" hideEffect="fade" >
+            <h:form id="add-supplier-form">
+
+                <p:panel >
+                    <h:panelGrid columns="2" cellpadding="4">
+                        <h:outputText value=" Name: " />
+                        <p:inputText id="add-supplier-first-name" required="true" value="#{managementSupplierController.supplier.name}" />
+
+                        <h:outputText value="Account Number: " />
+                        <p:inputText id="add-supplier-last-name" required="true" value="#{managementSupplierController.supplier.accountNo}" />
+
+
+                        <h:outputText value="Email: " />
+                        <p:inputText id="add-supplier-email" required="true" value="#{managementSupplierController.supplier.email}" />
+
+                        <h:outputText value="Phone: " />
+                        <p:inputText id="add-supplier-phone" required="true" value="#{managementSupplierController.supplier.phone}" />
+
+                        <p:commandButton id="add-supplier-submit" value="Add Employee" validateClient="true" update="supplierTable" oncomplete="PF('addSuppliersModal').hide();"  action="#{managementSupplierController.addSupplier}" />
+                    </h:panelGrid>
+                </p:panel>
+
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>
+
+
+</body>
+</html>

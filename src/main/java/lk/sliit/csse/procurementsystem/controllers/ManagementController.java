@@ -40,17 +40,19 @@ public class ManagementController {
 
     public void addNewProcurementStaff() {
         procurementStaff.setEnabled(true);
+        procurementStaff.setPassword(new BCryptPasswordEncoder().encode("1234"));
         procurementStaffRepository.save(procurementStaff);
         this.procurementStaff = new ProcurementStaff();
     }
 
     public void addNewAccountingStaff() {
         accountingStaff.setEnabled(true);
+        accountingStaff.setPassword(new BCryptPasswordEncoder().encode("1234"));
         accountingStaffRepository.save(accountingStaff);
         this.accountingStaff = new AccountingStaff();
     }
 
-    public List<SiteManager> getSiteMangers() {
+    public List<SiteManager> getSiteManagers() {
         return siteManagerRepository.findAll();
     }
 
@@ -60,6 +62,10 @@ public class ManagementController {
 
     public List<ProcurementStaff> getProcurementStaffs() {
         return procurementStaffRepository.findAll();
+    }
+
+    public void deleteSiteManager(SiteManager sm) {
+        siteManagerRepository.delete(sm);
     }
 
 

@@ -13,11 +13,11 @@
 <body>
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <h1> Employees </h1>
+        <h1> Procurement Staffs </h1>
 
         <p:commandButton value="Add Site Manager" type="button" onclick="PF('addProcurementStaffModal').show();" />
-        <ui:include src="add_employee.xhtml" />
-        <p:dataTable var="procurementStaff" value="#{managementController.getProcurementStaffs()}">
+        <ui:include src="modals/add_procurement_staff_modal.xhtml" />
+        <p:dataTable id="procurementStaffTable" var="procurementStaff" value="#{managementController.getProcurementStaffs()}">
             <p:column headerText="Id">
                 <h:outputText value="#{procurementStaff.id}" />
             </p:column>

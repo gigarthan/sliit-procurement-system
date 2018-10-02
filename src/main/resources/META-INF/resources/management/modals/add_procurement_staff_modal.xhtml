@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+
+<p:dialog header="Add Procurement Staff" widgetVar="addProcurementStaffModal" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-procurement-staff-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="First Name: " />
+                <p:inputText id="add-procurement-staff-first-name" value="#{managementController.procurementStaff.firstName}" />
+
+                <h:outputText value="Last Name: " />
+                <p:inputText id="add-procurement-staff-last-name" value="#{managementController.procurementStaff.lastName}" />
+
+                <h:outputText value="address: " />
+                <p:inputText id="add-procurement-staff-address" value="#{managementController.procurementStaff.address}" />
+
+                <h:outputText value="email: " />
+                <p:inputText id="add-procurement-staff-email" value="#{managementController.procurementStaff.email}" />
+
+                <h:outputText value="phone: " />
+                <p:inputText id="add-procurement-staff-phone" value="#{managementController.procurementStaff.phone}" />
+
+                <p:commandButton id="add-procurement-staff-submit" update="procurementStaffTable" styleClass="proc-del-btn" value="Add Employee" oncomplete="PF('addProcurementStaffModal').hide()" action="#{managementController.addNewProcurementStaff}" />
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+
+
+</body>
+</html>
