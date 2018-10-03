@@ -17,11 +17,9 @@ import javax.inject.Named;
 import java.util.List;
 import java.util.Optional;
 import javax.faces.bean.ManagedBean;
-import lk.sliit.csse.procurementsystem.models.Category;
 import lk.sliit.csse.procurementsystem.models.ItemList;
 import lk.sliit.csse.procurementsystem.models.MaterialRequest;
 import lk.sliit.csse.procurementsystem.models.Items;
-import lk.sliit.csse.procurementsystem.repositories.CategoryRepository;
 import lk.sliit.csse.procurementsystem.repositories.ItemListRepository;
 import lk.sliit.csse.procurementsystem.repositories.ItemsRepository;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +37,6 @@ public class SiteManagerController {
     private MaterialRequest materialRequest = new MaterialRequest();
     private Items items = new Items("",78);
     private ItemList itemList = new ItemList();
-    private Category category = new Category();
     private String itemName;
     
     String itemListStr="";
@@ -49,8 +46,6 @@ public class SiteManagerController {
     private ItemsRepository itemsRepository;
 @Autowired
    private ItemListRepository itemListRepository;
-//@Autowired
-    private CategoryRepository categoryRepository;
        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");  
     Date date = new Date();  
     public void addOrder() {
@@ -95,10 +90,5 @@ public class SiteManagerController {
     }
        
     
-//    public Optional getOrderById(){
-//        Optional theOrder = materialRequestRepository.findById("1");
-//        if(theOrder==null)
-//            return null;
-//        return theOrder;
-//    }
+
 }
