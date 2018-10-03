@@ -61,6 +61,11 @@ public class SiteManagerController {
     
     
     
+    public String getTodayDate(){
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");  
+    Date date = new Date();  
+    return formatter.format(date);
+    }
      public void addItemForOrder() {
         itemList.getRelavantItemId(items.getItemName());
          itemListRepository.save(itemList);
@@ -73,6 +78,10 @@ public class SiteManagerController {
   
     public List<MaterialRequest> getOrders() {
         return materialRequestRepository.findAll();
+    }
+    
+    public long getNextReqOrderNo() {
+        return (materialRequestRepository.count()+1);
     }
     
        public List<String> completeText(String query) {
