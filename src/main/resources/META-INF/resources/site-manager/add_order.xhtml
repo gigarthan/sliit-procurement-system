@@ -57,7 +57,7 @@ limitations under the License.
             <h:panelGrid columns="2" cellpadding="4">
                 
                 <h:outputText value="Order Request Id: " />
-                <p:inputText id="add-order-req-order-no" value="#{siteManagerController.materialRequest.reqOrderNo}" />
+                <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
 
                 <h:outputText value="endDate: " />
                 <p:calendar id="add-order-end-date" value="#{siteManagerController.materialRequest.endDate}" mode="popup"/>
