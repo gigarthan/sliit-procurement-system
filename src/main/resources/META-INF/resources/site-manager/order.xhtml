@@ -14,16 +14,16 @@
         <h3>Site id :</h3>
         <p:commandButton  value="Add Order" type="button" onclick="PF('addOrdersModal').show();" />
         <ui:include src="add_order.xhtml"></ui:include>
-        <p:dataTable id="orderTable" var="materialRequest" value="#{siteManagerController.getOrders()}">
-            <p:column headerText="Id" width="15" >
-                <h:outputText value="#{materialRequest.reqOrderNo}" />
+        <p:dataTable id="orderTable" var="materialRequest" value="#{siteManagerController.getOrders()}" scrollable="true" scrollHeight="150">
+            <p:column headerText="Request Order No" width="50" >
+                <h:outputText value="OR#{materialRequest.reqOrderNo}" />
             </p:column>
 
-            <p:column headerText="Order Date">
+            <p:column headerText="Order Date" width="50">
                 <h:outputText value="#{materialRequest.orderDate}" />
             </p:column>
 
-            <p:column headerText="End date">
+            <p:column headerText="End date" width="50">
                 <h:outputText value="#{materialRequest.endDate}" />
             </p:column>
 

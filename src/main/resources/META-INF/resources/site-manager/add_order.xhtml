@@ -29,15 +29,18 @@ limitations under the License.
 <body>
 <p:dialog header="Add Orders" widgetVar="addOrdersModal" showEffect="fade" hideEffect="fade" >
     <h:form id="add-order-form">
-      
+        
 
               <p:panel >
             <h:panelGrid columns="2" cellpadding="4">
+                  <h:outputText value="Order Request Id: " />
+                <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
+
                 <h:outputText value="Item name: " />
                 <p:autoComplete id="add-item-to-order-item-name" value="#{siteManagerController.itemName}" completeMethod="#{siteManagerController.completeText}" placeholder="Item Name" />
                 <h:outputText value="Quantity: " />
                 <p:inputText id="add-item-to-order-item-qty" value="#{siteManagerController.itemList.qty}" />
-    
+
                 <p:commandButton id="add-item-to-order-submit" value="Add Items"  action="#{siteManagerController.addItemForOrder}" />
                                <p:dataTable id="itemListTable" var="itemList" value="#{siteManagerController.getItemsForOrder()}" scrollable="true" scrollHeight="200" style="width: 50%">
        
@@ -56,11 +59,9 @@ limitations under the License.
   <p:panel >
             <h:panelGrid columns="2" cellpadding="4">
                 
-                <h:outputText value="Order Request Id: " />
-                <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
-
+              
                 <h:outputText value="endDate: " />
-                <p:calendar id="add-order-end-date" value="#{siteManagerController.materialRequest.endDate}" mode="popup"/>
+                <p:calendar id="add-order-end-date" value="#{siteManagerController.materialRequest.endDate}" mode="popup" mindate="#{siteManagerController.getTodayDate()}"/>
 
                 <p:commandButton id="add-order-submit" value="Add Order" update="orderTable" oncomplete="PF('addOrdersModal').hide()" action="#{siteManagerController.addOrder}" />
             </h:panelGrid>

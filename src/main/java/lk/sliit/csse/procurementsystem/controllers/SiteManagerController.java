@@ -67,6 +67,7 @@ public class SiteManagerController {
     return formatter.format(date);
     }
      public void addItemForOrder() {
+        itemList.setReqOrderNo(getNextReqOrderNo());
         itemList.getRelavantItemId(items.getItemName());
          itemListRepository.save(itemList);
         this.itemList = new ItemList();
