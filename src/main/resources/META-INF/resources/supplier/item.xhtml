@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <body>
+        <ui:composition template="../template.xhtml">
+            <ui:define name="content">
+                <h2 style="font-family: arial"> Items </h2>
+
+                <p:commandButton value="Add Item" type="button" onclick="PF('addItem').show();" icon="ui-icon-save" />
+                <ui:include src="add-item.xhtml" />
+
+                <h:form id="myForm">
+                <p:dataTable var="itemList" style="width: 750px" value="#{itemListController.getItem()}">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{itemList.itemId}" />
+                    </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText id="itemName" value="#{itemList.name}" />
+                    </p:column>
+                    <p:column headerText="Category">
+                        <h:outputText value="#{itemList.category}" />
+                    </p:column>
+                    <p:column headerText="Description">
+                        <h:outputText value="#{itemList.description}" />
+                    </p:column>
+                    <p:column headerText="Price">
+                        <h:outputText value="#{itemList.price}" />
+                    </p:column>
+                    
+                    <p:column headerText="Update">
+                        <p:commandButton value="Update" type="button" icon="fa-adn" update="myForm" />
+                    </p:column>
+                    <p:column headerText="Delete">
+                         <p:growl id="growl" life="2000" />
+                         <p:commandButton value="Delete" id="ajax" update="growl" actionListener="#{itemListController.deleteItem(itemList.itemId)}" icon="ui-icon-trash" />
+                         
+<!--                            <p:commandButton value="Delete" type="button" id="ajax"update="growl"
+                                             actionListener="#{itemListController.buttonAction(actionEvent)}" icon="ui-icon-trash" />-->
+                    </p:column>
+                </p:dataTable>
+                </h:form>
+                    
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
