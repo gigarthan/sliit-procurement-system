@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<p:dialog header="Add Payment" widgetVar="addpaymentModal" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-payment-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="Bank: " />
+                <p:inputText id="add-payment-Bank" value="#{paymentController.payment.BankName}" />
+
+                <h:outputText value="Branch: " />
+                <p:inputText id="add-payment-Branch" value="#{managementController.payment.Branch}" />
+
+                <h:outputText value="Account No: " />
+                <p:inputText id="add-payment-Account-No" value="#{managementController.payment.AccountNO}" />
+
+                <h:outputText value="Total price: " />
+                <p:inputText id="add-payment-Total-Price" value="#{managementController.payment.TotalPrice}" />
+
+                <p:commandButton id="add-payment-submit" value="Pay Payment" update="paymentTable" oncomplete="PF('addpaymentModal').hide()" action="#{paymentController.addPayment}" />
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+</body>
+</html>

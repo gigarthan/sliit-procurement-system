@@ -14,7 +14,15 @@
 <div class="topnav ui-g-12" id="myTopnav">
     <a href="#home" class="active">Home</a>
     <a href="#news">Orders</a>
-    <a href="#contact">Payment</a>
+    <div class="dropdown">
+        <button class="dropbtn">Payment
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/payment/view-orders.xhtml">View orders</a>
+            <a href="/payment/view-orders.xhtml">Payments</a>
+        </div>
+    </div>
     <div class="dropdown">
         <button class="dropbtn">Management
             <i class="fa fa-caret-down"></i>
