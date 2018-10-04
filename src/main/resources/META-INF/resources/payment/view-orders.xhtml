@@ -8,18 +8,20 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
 <head>
-    <title>Pay for Orders</title>
+    <title>Paid Orders Bank Details </title>
 </head>
 <body>
 <ui:composition template="../template.xhtml">
     <ui:define name="content">
-        <h1>Pay for Orders </h1>
+        <h1> Paid Orders Bank Details </h1>
 
-        <p:commandButton  value="Pay" type="button" onclick="PF('addpaymentModal').show();" />
-        <ui:include src="add_payment.xhtml"></ui:include>
         <p:dataTable id="paymentTable" var="payment" value="#{paymentController.getPayments()}">
         
-            <p:column headerText="Bank" width="15" >
+        	<p:column headerText="OrderID" width="15">
+        	 	<h:outputText value = "#{payment.orderID}" />
+        	</p:column>
+            
+            <p:column headerText="Bank">
                 <h:outputText value="#{payment.BankName}" />
             </p:column>
 

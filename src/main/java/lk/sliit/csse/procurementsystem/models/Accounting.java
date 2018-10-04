@@ -1,6 +1,7 @@
 package lk.sliit.csse.procurementsystem.models;
 
 public class Accounting {
+	private String orderID;
 	 private String BankName;
 	    private String Branch;
 	    private String AccountNO;
@@ -16,6 +17,14 @@ public class Accounting {
 
 		public String getBranch() {
 			return Branch;
+		}
+
+		public String getOrderID() {
+			return orderID;
+		}
+
+		public void setOrderID(String orderID) {
+			this.orderID = orderID;
 		}
 
 		public void setBranch(String branch) {

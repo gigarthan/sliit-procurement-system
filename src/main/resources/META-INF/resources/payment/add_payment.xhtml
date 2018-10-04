@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
 <head>
-    <title>Title</title>
+    <title>Add Payment Details</title>
 </head>
 <body>
 <p:dialog header="Add Payment" widgetVar="addpaymentModal" showEffect="fade" hideEffect="fade" >
@@ -16,6 +16,10 @@
 
         <p:panel >
             <h:panelGrid columns="2" cellpadding="4">
+            
+            	<h:outputText value="OrderID: " />
+                <p:inputText id="add-payment-Bank" value="#{paymentController.payment.orderID}" />
+                
                 <h:outputText value="Bank: " />
                 <p:inputText id="add-payment-Bank" value="#{paymentController.payment.BankName}" />
 
