@@ -32,7 +32,7 @@ import lk.sliit.csse.procurementsystem.repositories.MaterialRequestRepository;
 @Named
 @RestController
 @ManagedBean
-public class SiteManagerController {
+public class SiteManagerController { 
 
     private MaterialRequest materialRequest = new MaterialRequest();
     private Items items = new Items("",78);
