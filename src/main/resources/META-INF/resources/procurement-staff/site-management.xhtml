@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+    <title>Site Management</title>
+</head>
+<body>
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h1> Site Management </h1>
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+            
+            <p:dataTable id="siteDT" var="site" value="#{siteController.sites1}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
+                <f:facet name="header">
+                    Single with Row Click
+                </f:facet>
+                <p:column headerText="Id">
+                    <h:outputText value="#{site.siteId}" />
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{site.siteName}" />
+                </p:column>
+                <p:column headerText="Address">
+                    <h:outputText value="#{site.address}" />
+                </p:column>
+                <p:column headerText="Storage Capacity">
+                    <h:outputText value="#{site.storageCapacity}" />
+                </p:column>
+                <p:column headerText="Current Capacity">
+                    <h:outputText value="#{site.currentCapacity}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
+                </f:facet>
+            </p:dataTable>
+            
+            <p:dialog header="Site Info" widgetVar="siteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="siteDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty siteController.selectedSite}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <h:outputText value="Selected Site:" /> 
+                        </f:facet>
+
+                        <h:outputText value="Id:" />
+                        <h:outputText value="#{siteController.selectedSite.siteId}" />
+
+                        <h:outputText value="Name" />
+                        <h:outputText value="#{siteController.selectedSite.siteName}" />
+
+                        <h:outputText value="Address:" />
+                        <h:outputText value="#{siteController.selectedSite.address}" />
+
+                        <h:outputText value="Storage Capacity:" />
+                        <h:outputText value="#{siteController.selectedSite.storageCapacity}" />
+                       
+                        <h:outputText value="Current Capacity:" />
+                        <h:outputText value="#{siteController.selectedSite.currentCapacity}" />
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+            
+        </h:form>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

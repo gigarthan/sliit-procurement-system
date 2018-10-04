@@ -15,28 +15,30 @@
  */
 package lk.sliit.csse.procurementsystem.models;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 
 /**
  *
- * @author PC-1_Win
+ * @author Kiru
  */
 @Entity
-public class Site {
+public class Site implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long siteId;
 
     private String siteName;
-    private String addresss;
+    private String address;
     
     private Float storageCapacity; //cubic meters
     private Float currentCapacity;
+    
+   
 
     /**
      * @return the siteId
@@ -67,17 +69,17 @@ public class Site {
     }
 
     /**
-     * @return the addresss
+     * @return the address
      */
-    public String getAddresss() {
-        return addresss;
+    public String getAddress() {
+        return address;
     }
 
     /**
-     * @param addresss the addresss to set
+     * @param addresss the address to set
      */
     public void setAddresss(String addresss) {
-        this.addresss = addresss;
+        this.address = addresss;
     }
 
     /**
@@ -106,6 +108,12 @@ public class Site {
      */
     public void setCurrentCapacity(Float currentCapacity) {
         this.currentCapacity = currentCapacity;
+    }
+    
+
+    @Override
+    public String toString() {
+        return "Site{" + "siteId=" + siteId + ", siteName=" + siteName + ", address=" + address + ", storageCapacity=" + storageCapacity + ", currentCapacity=" + currentCapacity + '}';
     }
 
 }
