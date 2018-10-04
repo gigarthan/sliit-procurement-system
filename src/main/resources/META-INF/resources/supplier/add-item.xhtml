@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+<p:dialog header="Add Item" widgetVar="addItem" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-item-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="Name: " />
+                <p:inputText id="add-item-name" value="#{itemListController.itemList.name}" />
+
+                <h:outputText value="Category: " />
+                
+                <p:selectOneMenu id="add-item-category" value="#{itemListController.itemList.category}" style="width:145px">
+                    <f:selectItem itemLabel="Others" itemValue="Others" noSelectionOption="true" />
+                    <f:selectItem itemLabel="Appliances" itemValue="Appliances" />
+                    <f:selectItem itemLabel="Bathroom" itemValue="Bathroom" />
+                    <f:selectItem itemLabel="Finishes" itemValue="Finishes" />
+                    <f:selectItem itemLabel="Doors" itemValue="Doors" />
+                    <f:selectItem itemLabel="Electrical" itemValue="Electrical" />
+                    <f:selectItem itemLabel="Elevators" itemValue="Elevators" />
+                    <f:selectItem itemLabel="Flooring" itemValue="Flooring" />
+                    <f:selectItem itemLabel="Furniture" itemValue="Furniture" />
+                    <f:selectItem itemLabel="HVAC" itemValue="HVAC" />
+                    <f:selectItem itemLabel="Interior Design" itemValue="Interior Design" />
+                    <f:selectItem itemLabel="Lighting" itemValue="Lighting" />
+                    <f:selectItem itemLabel="Masonary" itemValue="Masonary" />
+                    <f:selectItem itemLabel="Paint" itemValue="Paint" />
+                    <f:selectItem itemLabel="Plumbing" itemValue="Plumbing" />
+                    <f:selectItem itemLabel="Railings" itemValue="Railings" />
+                    <f:selectItem itemLabel="Roofing" itemValue="Roofing" />
+                    <f:selectItem itemLabel="Stairs" itemValue="Stairs" />
+                    <f:selectItem itemLabel="Stone" itemValue="Stone" />
+                    <f:selectItem itemLabel="Windows" itemValue="Windows" />
+                </p:selectOneMenu>
+                
+              
+                <h:outputText value="Description: " />
+                <p:inputText id="add-item-description" value="#{itemListController.itemList.description}" />
+
+                <h:outputText value="Price: " />
+                <p:inputText id="add-item-price" value="#{itemListController.itemList.price}" />
+                
+                
+                
+                <p:commandButton id="insert-item" value="Insert" ajax="false" action="#{itemListController.addNewItem()}" />
+            </h:panelGrid>
+        </p:panel>
+        
+    </h:form>
+</p:dialog>
+
+    </body>
+</html>
