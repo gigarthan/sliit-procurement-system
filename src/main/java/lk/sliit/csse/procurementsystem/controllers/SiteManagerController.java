@@ -35,12 +35,7 @@ public class SiteManagerController {
     @Autowired
     private OrderRepository orderRepository;
 
-//    @Autowired
 
-//    @Autowired
-    private ItemsRepository itemsRepository;
-
-    private CategoryRepository categoryRepository;
     
     public void addOrder() {
         orderRepository.save(order);
