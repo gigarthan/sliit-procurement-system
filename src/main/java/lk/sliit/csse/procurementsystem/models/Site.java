@@ -16,10 +16,14 @@
 package lk.sliit.csse.procurementsystem.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -34,10 +38,15 @@ public class Site implements Serializable {
 
     private String siteName;
     private String address;
-    
     private Float storageCapacity; //cubic meters
     private Float currentCapacity;
     
+    @OneToMany(
+        mappedBy = "site", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
+    )
+    private List<SiteItem> siteItems = new ArrayList<SiteItem>();
    
 
     /**
@@ -109,11 +118,21 @@ public class Site implements Serializable {
     public void setCurrentCapacity(Float currentCapacity) {
         this.currentCapacity = currentCapacity;
     }
+
+    public List<SiteItem> getSiteItems() {
+        return siteItems;
+    }
+
+    public void setSiteItems(List<SiteItem> siteItems) {
+        this.siteItems = siteItems;
+    } 
+    
     
 
     @Override
     public String toString() {
         return "Site{" + "siteId=" + siteId + ", siteName=" + siteName + ", address=" + address + ", storageCapacity=" + storageCapacity + ", currentCapacity=" + currentCapacity + '}';
     }
+
 
 }

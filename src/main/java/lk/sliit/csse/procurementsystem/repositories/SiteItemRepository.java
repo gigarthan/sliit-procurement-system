@@ -15,7 +15,8 @@
  */
 package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.models.Site;
+import java.util.List;
+import lk.sliit.csse.procurementsystem.models.SiteItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Kiru
  */
 @Transactional
-public interface SiteRepository extends JpaRepository<Site, Long> {
+public interface SiteItemRepository extends JpaRepository<SiteItem, Long> {
     
+      public List<SiteItem> findAllBySiteSiteId(Long siteId);
 }

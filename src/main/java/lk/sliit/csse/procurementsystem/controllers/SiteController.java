@@ -16,10 +16,10 @@
 package lk.sliit.csse.procurementsystem.controllers;
 
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.faces.annotation.ManagedProperty;
 import javax.inject.Named;
 import lk.sliit.csse.procurementsystem.models.Site;
+import lk.sliit.csse.procurementsystem.models.SiteItem;
+import lk.sliit.csse.procurementsystem.repositories.SiteItemRepository;
 import lk.sliit.csse.procurementsystem.repositories.SiteRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,8 @@ public class SiteController {
     @Autowired
     private SiteRepository siteRepository;
     
+    @Autowired
+    private SiteItemRepository siteItemRepository;
     
     public List<Site> getSites(){      
         return siteRepository.findAll();
@@ -58,5 +60,10 @@ public class SiteController {
        siteRepository.save(newSite);
        newSite = new Site();
        return true;
+    }
+    
+    //Get Items of Selected Site
+    public List<SiteItem> getSiteItems() {
+      return siteItemRepository.findAllBySiteSiteId(selectedSite.getSiteId());
     }
 }

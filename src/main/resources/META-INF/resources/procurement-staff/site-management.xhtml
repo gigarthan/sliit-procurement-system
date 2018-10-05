@@ -41,12 +41,13 @@
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
                     <p:commandButton process="siteDT" icon="ui-icon-search" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
+                    <p:commandButton process="siteDT" update=":form:siteItemsDetail" icon="ui-icon-search" value="View Items on Site" oncomplete="PF('siteItemsDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
             <p:dialog header="Site Info" widgetVar="siteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="siteDetail" style="text-align:center;">
-                    <p:panelGrid  columns="2" rendered="#{not empty siteController.selectedSite}" columnClasses="label,value">
+                    <p:panelGrid  columns="2" cellPadding="2" rendered="#{not empty siteController.selectedSite}" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Selected Site:" /> 
                         </f:facet>
@@ -69,27 +70,43 @@
                 </p:outputPanel>
             </p:dialog>
             
+            <p:dialog header="Items on Site" widgetVar="siteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="siteItemsDetail" style="text-align:center;">
+                    <p:dataTable var="item" value="#{siteController.getSiteItems()}" rendered="#{not empty siteController.selectedSite}">
+                        <f:facet name="header">
+                            <h:outputText value="Site Items:" /> 
+                        </f:facet>
+                            <p:column headerText="Item">
+                                <h:outputText value="#{item.item}" />
+                            </p:column>
+                            <p:column headerText="Quantity">
+                                <h:outputText value="#{item.quantitys}" />
+                            </p:column>
+                    </p:dataTable>
+                </p:outputPanel>
+            </p:dialog>
+            
         </h:form>
         
         <h:form id="addSiteForm">
         <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
-                <p:outputPanel id="addSite" style="text-align:center;">
+                <p:outputPanel id="addSite" style="text-align:center;" >
                     <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add New Site:" /> 
                         </f:facet>
                         
-                        <h:outputText value="Site Name: " />
-                        <p:inputText id="add-site-name" value="#{siteController.newSite.siteName}" />
+                        <h:outputText for="addSitename" value="Site Name: " />
+                        <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" />
 
-                        <h:outputText value="Address:" />
+                        <h:outputText for="add-site-address" value="Address:" />
                         <p:inputText id="add-site-address" value="#{siteController.newSite.address}" />
                         
-                        <h:outputText value="Storage Capacity:" />
+                        <h:outputText for="add-site-storage-capacity" value="Storage Capacity:" />
                         <p:inputText id="add-site-storage-capacity" value="#{siteController.newSite.storageCapacity}" />
                         
-                        <h:outputText value="Current Capacity:" />
+                        <h:outputText for="add-site-current-capacity" value="Current Capacity:" />
                         <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
                         
                         <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
