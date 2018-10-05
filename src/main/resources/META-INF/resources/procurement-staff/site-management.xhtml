@@ -45,9 +45,9 @@
                 </p:column>
                 <p:column headerText="Site Manager">
                     <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{empty site.siteManager ? 'Not' : 'site.siteManager.firstName'}" /></f:facet>
+                        <f:facet name="output"><h:outputText value="#{empty site.siteManager ? 'Not' : site.siteManager.firstName}" /></f:facet>
                         <f:facet name="input">
-                            <h:selectOneMenu value="#{empty site.siteManager ? 'Not' : 'site.siteManager.firstName'}" style="width:100%">
+                            <h:selectOneMenu value="#{site.siteManager}" style="width:100%">
                                 <f:selectItem itemLabel="Select One" itemValue="" />
                                 <f:selectItems value="#{siteController.getSiteManagers()}" var="siteManager" itemLabel="#{siteManager.firstName}" itemValue="#{siteManager.firstName}" />
                             </h:selectOneMenu>
