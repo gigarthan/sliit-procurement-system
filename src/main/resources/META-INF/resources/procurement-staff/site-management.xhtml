@@ -99,13 +99,15 @@
         <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
                 <p:outputPanel id="addSite" style="text-align:center;" >
-                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add New Site:" /> 
                         </f:facet>
                         
-                        <h:outputText for="addSitename" value="Site Name: " />
-                        <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" />
+                        <h:outputText for="addSiteName" value="Site Name: " />
+                        <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" required="true"/>
+                        <p:message for="addSiteName" />
+                        <h:outputText value="#{siteController.newSite.siteName}" />
 
                         <h:outputText for="add-site-address" value="Address:" />
                         <p:inputText id="add-site-address" value="#{siteController.newSite.address}" />
@@ -116,7 +118,7 @@
                         <h:outputText for="add-site-current-capacity" value="Current Capacity:" />
                         <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
                         
-                        <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
+                        <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" validateClient="true" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
                     </p:panelGrid>
                 </p:outputPanel>
