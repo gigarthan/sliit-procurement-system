@@ -76,10 +76,10 @@ public class Site implements Serializable {
     }
 
     /**
-     * @param addresss the address to set
+     * @param address the address to set
      */
-    public void setAddresss(String addresss) {
-        this.address = addresss;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**

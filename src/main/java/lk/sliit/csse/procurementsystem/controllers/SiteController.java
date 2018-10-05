@@ -33,23 +33,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SiteController {
     
     private Site selectedSite;
+    private Site newSite = new Site();
     
-    private List<Site> sites1;
     
     @Autowired
     private SiteRepository siteRepository;
     
-    @PostConstruct
-    public void init() {
-        sites1 = this.getSites();
-    }
     
-    public List<Site> getSites(){
+    public List<Site> getSites(){      
         return siteRepository.findAll();
-    }
-    
-    public List<Site> getSites1() {
-        return sites1;
     }
     
     public void setSelectedSite(Site site) {
@@ -58,5 +50,13 @@ public class SiteController {
     
     public Site getSelectedSite() {
         return selectedSite;
+    }
+    
+    
+    //Add site
+    public boolean addSite() {
+       siteRepository.save(newSite);
+       newSite = new Site();
+       return true;
     }
 }

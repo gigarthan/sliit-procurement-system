@@ -19,9 +19,9 @@
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
             
-            <p:dataTable id="siteDT" var="site" value="#{siteController.sites1}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
+            <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
                 <f:facet name="header">
-                    Single with Row Click
+                    Available Sites
                 </f:facet>
                 <p:column headerText="Id">
                     <h:outputText value="#{site.siteId}" />
@@ -40,6 +40,7 @@
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
+                    <p:commandButton process="siteDT" icon="ui-icon-search" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
@@ -69,6 +70,35 @@
             </p:dialog>
             
         </h:form>
+        
+        <h:form id="addSiteForm">
+        <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                
+                <p:outputPanel id="addSite" style="text-align:center;">
+                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                        <f:facet name="header">
+                            <h:outputText value="Add New Site:" /> 
+                        </f:facet>
+                        
+                        <h:outputText value="Site Name: " />
+                        <p:inputText id="add-site-name" value="#{siteController.newSite.siteName}" />
+
+                        <h:outputText value="Address:" />
+                        <p:inputText id="add-site-address" value="#{siteController.newSite.address}" />
+                        
+                        <h:outputText value="Storage Capacity:" />
+                        <p:inputText id="add-site-storage-capacity" value="#{siteController.newSite.storageCapacity}" />
+                        
+                        <h:outputText value="Current Capacity:" />
+                        <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
+                        
+                        <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
+                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
     </ui:define>
 </ui:composition>
 </body>
