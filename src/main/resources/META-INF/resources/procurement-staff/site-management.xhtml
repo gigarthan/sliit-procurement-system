@@ -99,24 +99,34 @@
         <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
                 <p:outputPanel id="addSite" style="text-align:center;" >
-                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
+                    <p:panelGrid id="grid1"  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add New Site:" /> 
                         </f:facet>
                         
-                        <h:outputText for="addSiteName" value="Site Name: " />
+                        <h:outputLabel for="addSiteName" value="Site Name: " />
                         <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" required="true"/>
                         <p:message for="addSiteName" />
                         <h:outputText value="#{siteController.newSite.siteName}" />
 
-                        <h:outputText for="add-site-address" value="Address:" />
-                        <p:inputText id="add-site-address" value="#{siteController.newSite.address}" />
+                        <h:outputLabel for="addSiteAddress" value="Address:" />
+                        <p:inputText id="addSiteAddress" value="#{siteController.newSite.address}" />
+                        <p:message for="addSiteAddress" />
+                        <h:outputText value="#{siteController.newSite.address}" />
                         
-                        <h:outputText for="add-site-storage-capacity" value="Storage Capacity:" />
-                        <p:inputText id="add-site-storage-capacity" value="#{siteController.newSite.storageCapacity}" />
+                        <h:outputLabel for="addSiteStorageCapacity" value="Storage Capacity:" />
+                        <p:inputText id="addSiteStorageCapacity" value="#{siteController.newSite.storageCapacity}">
+                            <f:validateDoubleRange minimum="0"/>
+                        </p:inputText>
+                        <p:message for="addSiteStorageCapacity" />
+                        <h:outputText value="#{siteController.newSite.storageCapacity}" />
                         
-                        <h:outputText for="add-site-current-capacity" value="Current Capacity:" />
-                        <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
+                        <h:outputLabel for="addSiteCurrentCapacity" value="Current Capacity:" />
+                        <p:inputText id="addSiteCurrentCapacity" value="#{siteController.newSite.currentCapacity}">
+                            <f:validateDoubleRange minimum="0"/>
+                        </p:inputText> />
+                        <p:message for="addSiteCurrentCapacity" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
                         
                         <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" validateClient="true" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
@@ -130,17 +140,21 @@
         <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
                 <p:outputPanel id="addSiteItems" style="text-align:center;" >
-                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add Items:" /> 
                         </f:facet>
                         
-                        <h:outputText for="addSiteItemsName" value="Item Name: " />
-                        <p:inputText id="addSiteItemsName" value="#{siteController.newSiteItem.item}" />
+                        <h:outputLabel for="addSiteItemsName" value="Item Name: " />
+                        <p:inputText id="addSiteItemsName" value="#{siteController.newSiteItem.item}" required="true" />
+                        <p:message for="addSiteItemsName" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
 
-                        <h:outputText for="addSiteItemsQty" value="Quantity: " />
+                        <h:outputLabel for="addSiteItemsQty" value="Quantity: " />
                         <p:inputText id="addSiteItemsQty" value="#{siteController.newSiteItem.quantity}" />
-
+                        <p:message for="addSiteItemsQty" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
+                        
                         <p:commandButton icon="ui-icon-search" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
                     </p:panelGrid>
