@@ -34,7 +34,7 @@ public class SiteController {
     
     private Site selectedSite;
     private Site newSite = new Site();
-    
+    private SiteItem newSiteItem = new SiteItem();
     
     @Autowired
     private SiteRepository siteRepository;
@@ -65,5 +65,13 @@ public class SiteController {
     //Get Items of Selected Site
     public List<SiteItem> getSiteItems() {
       return siteItemRepository.findAllBySiteSiteId(selectedSite.getSiteId());
+    }
+    
+    //Add site items
+    public boolean addSiteItem() {
+        newSiteItem.setSite(selectedSite);
+        siteItemRepository.save(newSiteItem);
+        newSiteItem = new SiteItem();
+        return true;
     }
 }

@@ -80,8 +80,11 @@
                                 <h:outputText value="#{item.item}" />
                             </p:column>
                             <p:column headerText="Quantity">
-                                <h:outputText value="#{item.quantitys}" />
+                                <h:outputText value="#{item.quantity}" />
                             </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton icon="ui-icon-search" value="Add Item" oncomplete="PF('addSiteItemsDialog').show()" />
+                        </f:facet>
                     </p:dataTable>
                 </p:outputPanel>
             </p:dialog>
@@ -110,6 +113,28 @@
                         <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
                         
                         <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
+                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
+        <h:form id="addSiteItemsForm">
+        <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                
+                <p:outputPanel id="addSiteItems" style="text-align:center;" >
+                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                        <f:facet name="header">
+                            <h:outputText value="Add Items:" /> 
+                        </f:facet>
+                        
+                        <h:outputText for="addSiteItemsName" value="Item Name: " />
+                        <p:inputText id="addSiteItemsName" value="#{siteController.newSiteItem.item}" />
+
+                        <h:outputText for="addSiteItemsQty" value="Quantity: " />
+                        <p:inputText id="addSiteItemsQty" value="#{siteController.newSiteItem.quantity}" />
+
+                        <p:commandButton icon="ui-icon-search" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
                     </p:panelGrid>
                 </p:outputPanel>
