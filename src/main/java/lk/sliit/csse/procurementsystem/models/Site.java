@@ -24,6 +24,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -49,6 +50,10 @@ public class Site implements Serializable {
     private List<SiteItem> siteItems = new ArrayList<SiteItem>();
    
 
+    @OneToOne
+    private SiteManager siteManager;
+
+    
     /**
      * @return the siteId
      */
@@ -127,12 +132,20 @@ public class Site implements Serializable {
         this.siteItems = siteItems;
     } 
     
-    
+    public SiteManager getSiteManager() {
+        return siteManager;
+    }
+
+    public void setSiteManager(SiteManager siteManager) {
+        this.siteManager = siteManager;
+    }
 
     @Override
     public String toString() {
-        return "Site{" + "siteId=" + siteId + ", siteName=" + siteName + ", address=" + address + ", storageCapacity=" + storageCapacity + ", currentCapacity=" + currentCapacity + '}';
+        return "Site{" + "siteId=" + siteId + ", siteName=" + siteName + ", address=" + address + ", storageCapacity=" + storageCapacity + ", currentCapacity=" + currentCapacity + ", siteItems=" + siteItems + ", siteManager=" + siteManager + '}';
     }
+
+    
 
 
 }

@@ -20,10 +20,14 @@
             <p:growl id="msgs" showDetail="true" />
             
             <!--Site Information-->
-            <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
+            <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}" editable="true">
                 <f:facet name="header">
                     Available Sites
                 </f:facet>
+                
+                <p:ajax event="rowEdit" listener="#{siteController.onRowEdit}" update=":form:msgs" />
+                <p:ajax event="rowEditCancel" listener="#{siteController.onRowCancel}" update=":form:msgs" />
+                
                 <p:column headerText="Id">
                     <h:outputText value="#{site.siteId}" />
                 </p:column>
@@ -38,6 +42,20 @@
                 </p:column>
                 <p:column headerText="Current Capacity">
                     <h:outputText value="#{site.currentCapacity}" />
+                </p:column>
+                <p:column headerText="Site Manager">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{empty site.siteManager ? 'Not' : 'site.siteManager.firstName'}" /></f:facet>
+                        <f:facet name="input">
+                            <h:selectOneMenu value="#{empty site.siteManager ? 'Not' : 'site.siteManager.firstName'}" style="width:100%">
+                                <f:selectItem itemLabel="Select One" itemValue="" />
+                                <f:selectItems value="#{siteController.getSiteManagers()}" var="siteManager" itemLabel="#{siteManager.firstName}" itemValue="#{siteManager.firstName}" />
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column style="width:32px">
+                    <p:rowEditor />
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />

@@ -16,12 +16,17 @@
 package lk.sliit.csse.procurementsystem.controllers;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import lk.sliit.csse.procurementsystem.models.Site;
 import lk.sliit.csse.procurementsystem.models.SiteItem;
+import lk.sliit.csse.procurementsystem.models.SiteManager;
 import lk.sliit.csse.procurementsystem.repositories.SiteItemRepository;
+import lk.sliit.csse.procurementsystem.repositories.SiteManagerRepository;
 import lk.sliit.csse.procurementsystem.repositories.SiteRepository;
 import lombok.Data;
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -35,12 +40,17 @@ public class SiteController {
     private Site selectedSite;
     private Site newSite = new Site();
     private SiteItem newSiteItem = new SiteItem();
+    private SiteManager siteManager;
     
     @Autowired
     private SiteRepository siteRepository;
     
     @Autowired
     private SiteItemRepository siteItemRepository;
+    
+    @Autowired
+    private SiteManagerRepository siteManagerRepository;
+    
     
     public List<Site> getSites(){      
         return siteRepository.findAll();
@@ -73,5 +83,22 @@ public class SiteController {
         siteItemRepository.save(newSiteItem);
         newSiteItem = new SiteItem();
         return true;
+    }
+    
+    //Get SiteManager list
+    public List<SiteManager> getSiteManagers() {
+        return siteManagerRepository.findAll();
+    }
+    
+    
+    //Edit handlers
+    public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Site Manager Edited");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edit Cancelled");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }
