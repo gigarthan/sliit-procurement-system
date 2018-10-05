@@ -19,6 +19,7 @@
         <h:form id="form">
             <p:growl id="msgs" showDetail="true" />
             
+            <!--Site Information-->
             <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
                 <f:facet name="header">
                     Available Sites
@@ -40,11 +41,12 @@
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
-                    <p:commandButton process="siteDT" icon="ui-icon-search" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
+                    <p:commandButton process="siteDT" icon="ui-icon-plus" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
                     <p:commandButton process="siteDT" update=":form:siteItemsDetail" icon="ui-icon-search" value="View Items on Site" oncomplete="PF('siteItemsDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
+            <!--View Site Info -->
             <p:dialog header="Site Info" widgetVar="siteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="siteDetail" style="text-align:center;">
                     <p:panelGrid  columns="2" cellPadding="2" rendered="#{not empty siteController.selectedSite}" columnClasses="label,value">
@@ -70,11 +72,12 @@
                 </p:outputPanel>
             </p:dialog>
             
+            <!--View Site Items -->
             <p:dialog header="Items on Site" widgetVar="siteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 <p:outputPanel id="siteItemsDetail" style="text-align:center;">
                     <p:dataTable var="item" value="#{siteController.getSiteItems()}" rendered="#{not empty siteController.selectedSite}">
                         <f:facet name="header">
-                            <h:outputText value="Site Items:" /> 
+                            <h:outputText value="Site Items: #{siteController.selectedSite.siteName}" /> 
                         </f:facet>
                             <p:column headerText="Item">
                                 <h:outputText value="#{item.item}" />
@@ -83,7 +86,7 @@
                                 <h:outputText value="#{item.quantity}" />
                             </p:column>
                         <f:facet name="footer">
-                            <p:commandButton icon="ui-icon-search" value="Add Item" oncomplete="PF('addSiteItemsDialog').show()" />
+                            <p:commandButton icon="ui-icon-plus" value="Add Item" oncomplete="PF('addSiteItemsDialog').show()" />
                         </f:facet>
                     </p:dataTable>
                 </p:outputPanel>
@@ -91,6 +94,7 @@
             
         </h:form>
         
+        <!--Add New Site -->
         <h:form id="addSiteForm">
         <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
@@ -119,6 +123,7 @@
             </p:dialog>
         </h:form>
         
+        <!--Add Items To Selected Site -->
         <h:form id="addSiteItemsForm">
         <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
