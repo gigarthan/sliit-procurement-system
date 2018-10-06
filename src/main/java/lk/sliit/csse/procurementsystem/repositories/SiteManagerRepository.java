@@ -5,4 +5,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface SiteManagerRepository extends EmployeeBaseRepository<SiteManager> {
+    SiteManager findByFirstName(String firstName);
 }

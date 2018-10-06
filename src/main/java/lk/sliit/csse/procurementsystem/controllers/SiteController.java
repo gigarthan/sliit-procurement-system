@@ -40,7 +40,8 @@ public class SiteController {
     private Site selectedSite;
     private Site newSite = new Site();
     private SiteItem newSiteItem = new SiteItem();
-    private SiteManager siteManager;
+    private SiteManager siteManager = new SiteManager();
+    
     
     @Autowired
     private SiteRepository siteRepository;
@@ -91,14 +92,11 @@ public class SiteController {
     }
     
     
-    //Edit handlers
-    public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Site Manager Edited");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    //Add site manager
+    public void addSiteManager(){
+        SiteManager selSiteManager = siteManagerRepository.findByFirstName(siteManager.getFirstName());
+        
+        siteRepository.setSiteManagerFor(selSiteManager, selectedSite.getSiteId());
     }
-     
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    
 }

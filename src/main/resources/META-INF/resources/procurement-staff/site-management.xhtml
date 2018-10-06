@@ -20,13 +20,10 @@
             <p:growl id="msgs" showDetail="true" />
             
             <!--Site Information-->
-            <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}" editable="true">
+            <p:dataTable id="siteDT" var="site" widgetVar="siteDataTable" value="#{siteController.getSites()}" selectionMode="single" selection="#{siteController.selectedSite}" rowKey="#{site.siteId}">
                 <f:facet name="header">
                     Available Sites
                 </f:facet>
-                
-                <p:ajax event="rowEdit" listener="#{siteController.onRowEdit}" update=":form:msgs" />
-                <p:ajax event="rowEditCancel" listener="#{siteController.onRowCancel}" update=":form:msgs" />
                 
                 <p:column headerText="Id">
                     <h:outputText value="#{site.siteId}" />
@@ -44,23 +41,14 @@
                     <h:outputText value="#{site.currentCapacity}" />
                 </p:column>
                 <p:column headerText="Site Manager">
-                    <p:cellEditor>
-                        <f:facet name="output"><h:outputText value="#{empty site.siteManager ? 'Not' : site.siteManager.firstName}" /></f:facet>
-                        <f:facet name="input">
-                            <h:selectOneMenu value="#{site.siteManager}" style="width:100%">
-                                <f:selectItem itemLabel="Select One" itemValue="" />
-                                <f:selectItems value="#{siteController.getSiteManagers()}" var="siteManager" itemLabel="#{siteManager.firstName}" itemValue="#{siteManager.firstName}" />
-                            </h:selectOneMenu>
-                        </f:facet>
-                    </p:cellEditor>
+                   <h:outputText value="#{empty site.siteManager ? 'Not' : site.siteManager.firstName}" />
                 </p:column>
-                <p:column style="width:32px">
-                    <p:rowEditor />
-                </p:column>
+                
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
                     <p:commandButton process="siteDT" icon="ui-icon-plus" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
                     <p:commandButton process="siteDT" update=":form:siteItemsDetail" icon="ui-icon-search" value="View Items on Site" oncomplete="PF('siteItemsDialog').show()" />
+                    <p:commandButton process="siteDT" icon="ui-icon-plus" value="Assign Site Manager" oncomplete="PF('addSiteManagerDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
@@ -173,13 +161,34 @@
                         <p:message for="addSiteItemsQty" />
                         <h:outputText value="#{siteController.newSite.currentCapacity}" />
                         
-                        <p:commandButton icon="ui-icon-search" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
+                        <p:commandButton icon="ui-icon-plus" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
         </h:form>
         
+        <!--Assign Site Manager-->
+        <h:form id="addSiteManagerForm">
+        <p:dialog header="Assign Site Manager" widgetVar="addSiteManagerDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                
+                <p:outputPanel id="addSiteManager" style="text-align:center;" >
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value" >
+                        <f:facet name="header">
+                            <h:outputText value="Add Items:" /> 
+                        </f:facet>
+                        
+                        <h:outputLabel for="addSiteManagerName" value="Site Manager : " />
+                        <p:inputText id="addSiteManagerName" value="#{siteController.siteManager.firstName}" required="true" />
+                        <p:message for="addSiteManagerName" />
+                        <h:outputText value="#{siteController.siteManager.firstName}" />
+                        
+                        <p:commandButton icon="ui-icon-plus" update=":form:siteDT" value="Save Site Manager" action="#{siteController.addSiteManager()}" oncomplete="PF('msgs').show() PF('addSiteManagerDialog').hide()" />
+                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
     </ui:define>
 </ui:composition>
 </body>
