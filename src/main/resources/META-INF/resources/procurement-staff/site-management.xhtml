@@ -25,6 +25,8 @@
                     Available Sites
                 </f:facet>
                 
+                <p:ajax event="rowSelect" update=":addSiteManagerForm" />
+                
                 <p:column headerText="Id">
                     <h:outputText value="#{site.siteId}" />
                 </p:column>
@@ -143,7 +145,7 @@
         
         <!--Add Items To Selected Site -->
         <h:form id="addSiteItemsForm">
-        <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 
                 <p:outputPanel id="addSiteItems" style="text-align:center;" >
                     <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
@@ -172,10 +174,10 @@
         <h:form id="addSiteManagerForm">
         <p:dialog header="Assign Site Manager" widgetVar="addSiteManagerDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
-                <p:outputPanel id="addSiteManager" style="text-align:center;" >
+                <p:outputPanel id="addSiteManager" style="text-align:center;" rendered="#{not empty siteController.selectedSite}">
                     <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value" >
                         <f:facet name="header">
-                            <h:outputText value="Add Items:" /> 
+                            <h:outputText value="Add Site Manager" /> 
                         </f:facet>
                         
                         <h:outputLabel for="addSiteManagerName" value="Site Manager : " />
