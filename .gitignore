@@ -28,3 +28,4 @@ target/
 mvnw
 mvnw.cmd
 .mvn/
+src/main/resources/application.properties

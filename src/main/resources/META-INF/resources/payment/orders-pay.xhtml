@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Pay for Orders</title>
+</head>
+<body>
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h1> Pay for Orders </h1>
+
+        <p:dataTable id="paid-orderTable" var="pay" value="#{siteManagerController.getOrders()}">
+        
+            <p:column headerText="Order Id" width="15" >
+                <h:outputText value="#{pay.orderRef}" />
+            </p:column>
+
+            <p:column headerText="Ordered Date">
+                <h:outputText value="#{pay.orderedDate}" />
+            </p:column>
+            
+            <p:column headerText="Site Manager ID">
+                <h:outputText value="#{pay.siteMangerId}" />
+            </p:column>
+            
+            <p:column headerText="Supplier ID">
+                <h:outputText value="#{pay.supplierId}" />
+            </p:column>
+            
+            <p:column headerText="Total Price">
+                <h:outputText value="#{pay.totalPrice}" />
+            </p:column>
+            
+            <p:column>
+                <h:form>
+               <p:commandButton  value="Pay" type="button" onclick="PF('addpaymentModal').show();" />
+        <ui:include src="add_payment.xhtml"></ui:include>
+                </h:form>
+            </p:column>
+            
+
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+<p:dialog header="Add Good Receipt" widgetVar="addGoodReceipt" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-good-recepit-form">
+
+        <p:panel >
+            <h:panelGrid columns="2" cellpadding="2">
+                <h:outputText value="Purchase Order Reference: " />
+                <p:inputText id="add-purchase-order-reference" value="#{managementController.siteManager.firstName}" />
+
+                <h:outputText value="Delivery Date: " />
+                <p:inputText id="add-delivery-date" value="#{managementController.siteManager.lastName}" />
+                
+                <h:outputText value="Items: " />
+                <p:inputText id="items" value="#{managementController.siteManager.address}" />
+                <h:outputText value="Quantity " />
+                <p:inputText id="qty" value="#{managementController.siteManager.address}" />
+                
+                <p:commandButton id="add-textfield" value="+" ajax="false" />
+
+<!--                <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
+                    <p:ajax listener="" update="" />
+                    <f:selectItem itemLabel="Select Status" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{dropdownView.countries}" />
+                </p:selectOneMenu>-->
+                
+                <p:commandButton id="submit-receipt" value="Insert" ajax="false" action="#{managementController.addNewManager}" />
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+
+    </body>
+</html>

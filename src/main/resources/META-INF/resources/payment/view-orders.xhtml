@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+    <title>Paid Orders Bank Details </title>
+</head>
+<body>
+<ui:composition template="../template.xhtml">
+    <ui:define name="content">
+        <h1> Paid Orders Bank Details </h1>
+
+        <p:dataTable id="paymentTable" var="payment" value="#{paymentController.getPayments()}">
+        
+        	<p:column headerText="OrderID" width="15">
+        	 	<h:outputText value = "#{payment.orderID}" />
+        	</p:column>
+            
+            <p:column headerText="Bank">
+                <h:outputText value="#{payment.BankName}" />
+            </p:column>
+
+            <p:column headerText="Branch">
+                <h:outputText value="#{payment.Branch}" />
+            </p:column>
+
+            <p:column headerText="Account No">
+                <h:outputText value="#{payment.AccountNO}" />
+            </p:column>
+
+            <p:column headerText="Total price">
+                <h:outputText value="#{payment.TotalPrice}" />
+            </p:column>
+            
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+</body>
+</html>
