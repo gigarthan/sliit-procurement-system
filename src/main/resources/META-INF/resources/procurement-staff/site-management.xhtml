@@ -181,7 +181,10 @@
                         </f:facet>
                         
                         <h:outputLabel for="addSiteManagerName" value="Site Manager : " />
-                        <p:inputText id="addSiteManagerName" value="#{siteController.siteManager.firstName}" required="true" />
+                        <p:outputLabel value="Simple:" for="addSiteManagerName" />
+                        <p:autoComplete id="addSiteManagerName" value="#{siteController.siteManager.firstName}" completeMethod="#{siteController.completeText}" />
+ 
+                        <!--<p:inputText id="addSiteManagerName" value="{siteController.siteManager.firstName}" required="true" />-->
                         <p:message for="addSiteManagerName" />
                         <h:outputText value="#{siteController.siteManager.firstName}" />
                         

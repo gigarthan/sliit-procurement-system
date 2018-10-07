@@ -15,6 +15,7 @@
  */
 package lk.sliit.csse.procurementsystem.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -91,6 +92,16 @@ public class SiteController {
         return siteManagerRepository.findAll();
     }
     
+    public List<String> completeText(String query) {
+        List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameEndsWith(query);
+        
+        List<String> results = new ArrayList<>();
+        for(SiteManager s : siteManagers) {
+            results.add(s.getFirstName());
+        }
+         
+        return results;
+    }
     
     //Add site manager
     public void addSiteManager(){
