@@ -6,7 +6,7 @@ body {
     flex-direction: column;
 }
 
-button {
+button, a {
     border: none;
     border-radius: 100px !important;
 }
@@ -66,7 +66,7 @@ button {
 
 /* Add an active class to highlight the current page */
 .active {
-    background-color: #4CAF50;
+    background-color: #2399e5;
     color: white;
 }
 
