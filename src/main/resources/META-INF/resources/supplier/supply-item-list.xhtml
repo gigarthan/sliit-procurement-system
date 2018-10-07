@@ -14,36 +14,39 @@
             <ui:define name="content">
                 <h2 style="font-family: arial"> Items </h2>
 
-                <p:commandButton value="Add Item" type="button" onclick="PF('addItem').show();" icon="ui-icon-save" />
-                <ui:include src="add-item.xhtml" />
+                <p:commandButton value="Add" type="button" onclick="PF('addItem').show();" icon="ui-icon-save" />
+                <ui:include id="addItem" src="add-item.xhtml" />
 
                 <h:form id="myForm">
-                <p:dataTable var="itemList" style="width: 750px" value="#{itemListController.getItem()}">
+                <p:dataTable var="itemList" style="width: 750px" value="#{supplyItemListController.getItem()}">
                     <p:column headerText="ID">
-                        <h:outputText value="#{itemList.itemId}" />
+                        <h:outputText value="#{supplyMaterial.itemId}" />
                     </p:column>
                     <p:column headerText="Name">
-                        <h:outputText id="itemName" value="#{itemList.name}" />
+                        <h:outputText id="itemName" value="#{supplyMaterial.name}" />
                     </p:column>
                     <p:column headerText="Category">
-                        <h:outputText value="#{itemList.category}" />
+                        <h:outputText value="#{supplyMaterial.category}" />
                     </p:column>
                     <p:column headerText="Description">
-                        <h:outputText value="#{itemList.description}" />
+                        <h:outputText value="#{supplyMaterial.description}" />
                     </p:column>
                     <p:column headerText="Price">
-                        <h:outputText value="#{itemList.price}" />
+                        <h:outputText value="#{supplyMaterial.price}" />
                     </p:column>
                     
                     <p:column headerText="Update">
-                        <p:commandButton value="Update" type="button" icon="fa-adn" update="myForm" />
+                        <p:growl id="growl2" life="2000" />
+                        <p:commandButton value="Update" actionListener="#{supplyItemListController.updateItem(itemList.itemId)}" onclick="PF('updateItem').show();" />
+                        <ui:include id="updateItem" src="update-item.xhtml" />
                     </p:column>
+                    
                     <p:column headerText="Delete">
-                         <p:growl id="growl" life="2000" />
-                         <p:commandButton value="Delete" id="ajax" update="growl" actionListener="#{itemListController.deleteItem(itemList.itemId)}" icon="ui-icon-trash" />
+                        <p:growl id="growl" life="2000" />
+                        <p:commandButton value="Delete" id="ajax" update="growl" actionListener="#{supplyItemListController.deleteItem(itemList.itemId)}" />
                          
 <!--                            <p:commandButton value="Delete" type="button" id="ajax"update="growl"
-                                             actionListener="#{itemListController.buttonAction(actionEvent)}" icon="ui-icon-trash" />-->
+                                             actionListener="#{supplyItemListController.buttonAction(actionEvent)}" icon="ui-icon-trash" />-->
                     </p:column>
                 </p:dataTable>
                 </h:form>

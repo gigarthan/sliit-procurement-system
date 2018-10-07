@@ -33,6 +33,11 @@
             <p:column headerText="Last Name">
                 <h:outputText value="#{procurementStaff.lastName}" />
             </p:column>
+            <p:column>
+                <h:form>
+                    <p:commandButton styleClass="proc-del-btn" value="Delete" ajax="false" action="#{managementController.deleteProcurementStaff(procurementStaff)}" />
+                </h:form>
+            </p:column>
         </p:dataTable>
     </ui:define>
 </ui:composition>

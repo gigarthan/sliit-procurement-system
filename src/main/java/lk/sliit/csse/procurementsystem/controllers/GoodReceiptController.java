@@ -15,20 +15,14 @@
  */
 package lk.sliit.csse.procurementsystem.controllers;
 
-
 import java.io.IOException;
-import javax.faces.event.ActionEvent;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import lk.sliit.csse.procurementsystem.models.AccountingStaff;
-import lk.sliit.csse.procurementsystem.models.ItemList;
-import lk.sliit.csse.procurementsystem.repositories.AccountingStaffRepository;
-import lk.sliit.csse.procurementsystem.repositories.ItemListRepository;
+import lk.sliit.csse.procurementsystem.models.GoodReceipt;
+import lk.sliit.csse.procurementsystem.repositories.GoodReceiptRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,36 +33,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Data
 @Named
-@ManagedBean
-public class ItemListController {
+public class GoodReceiptController {
     
-    public ItemList itemList = new ItemList();
+    public GoodReceipt goodReceipt = new GoodReceipt();
     
     @Autowired
-    private ItemListRepository itemRepository;
+    private GoodReceiptRepository goodReceiptRepository;
     
 
-    public void addNewItem() {
-        itemRepository.save(itemList); 
-        this.itemList = new ItemList();
+    public void addNewReceipt() {
+        goodReceiptRepository.save(goodReceipt); 
+        this.goodReceipt = new GoodReceipt();
     }
     
-    public List<ItemList> getItem() {
-        return itemRepository.findAll();
+    public List<GoodReceipt> getReceipt() {
+        return goodReceiptRepository.findAll();
     }
     
-      public void deleteItem(long id) throws IOException {
-        itemRepository.deleteById(id);
+    public void deleteReceipt(long id) throws IOException {
+        goodReceiptRepository.deleteById(id);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
     
-     public void buttonAction(ActionEvent actionEvent) {
-        addMessage("Successfully Done");
-    }
-     
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
 }
