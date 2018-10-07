@@ -19,7 +19,7 @@
                 <p:inputText id="add-receipt-item-name" value="#{goodReceiptController.goodReceipt.orderRefer}" />
 
                 <h:outputText value="Quantity: " />
-                <p:inputMask id="add-receipt-item-quantity" value="#{goodReceiptController.goodReceipt.deliverDate}" mask="^[0-9]+$" />
+                <p:inputText id="add-receipt-item-quantity" value="#{goodReceiptController.goodReceipt.deliverDate}" />
                                 
                 <p:commandButton id="submit-receipt" value="Insert" ajax="false" action="#{goodReceiptController.addNewReceipt()}" />
             </h:panelGrid>

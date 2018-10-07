@@ -35,9 +35,14 @@
             </p:column>
             
             <p:column headerText="Add Item">
-                <p:commandButton value="Add" actionListener="#{supplyItemListController.updateItem(itemList.itemId)}" onclick="PF('addReceiptItem').show();" />
+                <p:commandButton value="Add" type="button" onclick="PF('addReceiptItem').show();" />
                 <ui:include id="add" src="add-receipt-item.xhtml" />
             </p:column>
+            
+<!--            <p:column headerText="View Item">
+                <p:commandButton value="view" type="button" onclick="PF('viewReceiptMaterial').show();" />
+                <ui:include id="view" src="view-receipt-material.xhtml" />
+            </p:column>-->
             
         </p:dataTable>
         
