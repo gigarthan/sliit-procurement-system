@@ -1,11 +1,13 @@
 package lk.sliit.csse.procurementsystem.repositories;
 
+import java.util.List;
 import lk.sliit.csse.procurementsystem.models.Items;
-import lk.sliit.csse.procurementsystem.models.Order;
+import lk.sliit.csse.procurementsystem.models.MaterialRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 @Transactional
-public interface OrderRepository  <T extends Order> extends JpaRepository<T, Long>{ 
-     //   extends ItemsRepository<Order>  {
+public interface MaterialRequestRepository  <T extends MaterialRequest> extends JpaRepository<T, Long>{ 
+         public List<MaterialRequest> findByReqOrderNo(long reqOrderNo);
+
 }

@@ -15,9 +15,9 @@
  */
 package lk.sliit.csse.procurementsystem.services;
 
-import lk.sliit.csse.procurementsystem.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import lk.sliit.csse.procurementsystem.repositories.MaterialRequestRepository;
 
 /**
  *
@@ -26,5 +26,5 @@ import org.springframework.stereotype.Service;
 @Service("orderService")
 public class OrderService {
     @Autowired
-    private OrderRepository orderRepository;
+    private MaterialRequestRepository materialRequestRepository;
 }
