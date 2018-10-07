@@ -7,21 +7,13 @@
       xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
-<h:head>
+<head>
     <title>TopBar</title>
-</h:head>
+</head>
 <body>
 <div class="topnav ui-g-12" id="myTopnav">
     <a href="#home" class="active">Home</a>
-   <div class="dropdown">
-        <button class="dropbtn">Orders
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-            <a href="/site-manager/order.xhtml">Add a order</a>
-            <a href="/site-manager/view_order.xhtml">View orders</a>
-        </div>
-    </div>
+    <a href="#news">Orders</a>
     <div class="dropdown">
         <button class="dropbtn">Payment
             <i class="fa fa-caret-down"></i>
