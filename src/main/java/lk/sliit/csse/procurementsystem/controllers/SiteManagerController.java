@@ -67,11 +67,12 @@ public class SiteManagerController {
          itemListRepository.save(itemList);
         this.itemList = new ItemList();
     }
-     
+     public List<Items> getItems(/*String orderRef*/) {
+        return itemsRepository.findAll();
+    }
      public List<ItemList> getItemsForOrder(/*String orderRef*/) {
         return itemListRepository.findAll();
     }
-  
     public List<MaterialRequest> getOrders() {
         return materialRequestRepository.findAll();
     }
@@ -80,14 +81,14 @@ public class SiteManagerController {
         return (materialRequestRepository.count()+1);
     }
     
-       public List<String> completeText(String query) {
-        List<String> results = new ArrayList<String>();
-        for(int i = 0; i < 10; i++) {
-            results.add(query + i);
-        }
-         results.add("beto");
-        return results;
-    }
+//       public List<String> completeText(String query) {
+//        List<String> results = new ArrayList<String>();
+//        for(int i = 0; i < 10; i++) {
+//            results.add(query + i);
+//        }
+//         results.add("beto");
+//        return results;
+//    }
        
     
 
