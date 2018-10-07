@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public interface SupplierRepository extends UserBaseRepository<Supplier> {
+public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
 }

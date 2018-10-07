@@ -7,8 +7,8 @@ import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-//import lk.sliit.csse.procurementsystem.models.Order;
-//import lk.sliit.csse.procurementsystem.repositories.PayOrderRepository;
+import lk.sliit.csse.procurementsystem.models.Order;
+import lk.sliit.csse.procurementsystem.repositories.PayOrderRepository;
 import lombok.Data;
 
 
@@ -17,14 +17,14 @@ import lombok.Data;
 @RestController
 public class PayOrderController {
 	
-//	private Order order = new Order();
+	private Order order = new Order();
 	
-
-//    private PayOrderRepository payorderRepository;
+	@Autowired
+    private PayOrderRepository payorderRepository;
 	
 	
-//	 public List<Order> getOrders() {
-//	        return payorderRepository.findAll();
-//	    }
+	 public List<Order> getOrders() {
+	        return payorderRepository.findAll();
+	    }
 
 }

@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lk.sliit.csse.procurementsystem.services;
+package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.repositories.OrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import lk.sliit.csse.procurementsystem.models.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Marjan
  */
-@Service("orderService")
-public class OrderService {
-    @Autowired
-    private OrderRepository orderRepository;
+@Transactional
+@NoRepositoryBean
+public interface CategoryRepository<T extends Category> extends JpaRepository {
+    
 }
