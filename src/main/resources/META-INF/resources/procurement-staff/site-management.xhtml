@@ -24,6 +24,9 @@
                 <f:facet name="header">
                     Available Sites
                 </f:facet>
+                
+                <p:ajax event="rowSelect" update=":addSiteManagerForm" />
+                
                 <p:column headerText="Id">
                     <h:outputText value="#{site.siteId}" />
                 </p:column>
@@ -39,10 +42,15 @@
                 <p:column headerText="Current Capacity">
                     <h:outputText value="#{site.currentCapacity}" />
                 </p:column>
+                <p:column headerText="Site Manager">
+                   <h:outputText value="#{empty site.siteManager ? 'Not Assigned' : (''.concat(site.siteManager.firstName).concat(' ').concat(site.siteManager.lastName))}" />
+                </p:column>
+                
                 <f:facet name="footer">
                     <p:commandButton process="siteDT" update=":form:siteDetail" icon="ui-icon-search" value="View" oncomplete="PF('siteDialog').show()" />
                     <p:commandButton process="siteDT" icon="ui-icon-plus" value="Add New Site" oncomplete="PF('addSiteDialog').show()" />
                     <p:commandButton process="siteDT" update=":form:siteItemsDetail" icon="ui-icon-search" value="View Items on Site" oncomplete="PF('siteItemsDialog').show()" />
+                    <p:commandButton process="siteDT" icon="ui-icon-plus" value="Assign Site Manager" oncomplete="PF('addSiteManagerDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
@@ -99,24 +107,36 @@
         <p:dialog header="Add New Site" widgetVar="addSiteDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                 
                 <p:outputPanel id="addSite" style="text-align:center;" >
-                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                    <p:panelGrid id="grid1"  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add New Site:" /> 
                         </f:facet>
                         
-                        <h:outputText for="addSitename" value="Site Name: " />
-                        <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" />
+                        <h:outputLabel for="addSiteName" value="Site Name: " />
+                        <p:inputText id="addSiteName" value="#{siteController.newSite.siteName}" required="true"/>
+                        <p:message for="addSiteName" />
+                        <h:outputText value="#{siteController.newSite.siteName}" />
 
-                        <h:outputText for="add-site-address" value="Address:" />
-                        <p:inputText id="add-site-address" value="#{siteController.newSite.address}" />
+                        <h:outputLabel for="addSiteAddress" value="Address:" />
+                        <p:inputText id="addSiteAddress" value="#{siteController.newSite.address}" />
+                        <p:message for="addSiteAddress" />
+                        <h:outputText value="#{siteController.newSite.address}" />
                         
-                        <h:outputText for="add-site-storage-capacity" value="Storage Capacity:" />
-                        <p:inputText id="add-site-storage-capacity" value="#{siteController.newSite.storageCapacity}" />
+                        <h:outputLabel for="addSiteStorageCapacity" value="Storage Capacity:" />
+                        <p:inputText id="addSiteStorageCapacity" value="#{siteController.newSite.storageCapacity}">
+                            <f:validateDoubleRange minimum="0"/>
+                        </p:inputText>
+                        <p:message for="addSiteStorageCapacity" />
+                        <h:outputText value="#{siteController.newSite.storageCapacity}" />
                         
-                        <h:outputText for="add-site-current-capacity" value="Current Capacity:" />
-                        <p:inputText id="add-site-current-capacity" value="#{siteController.newSite.currentCapacity}" />
+                        <h:outputLabel for="addSiteCurrentCapacity" value="Current Capacity:" />
+                        <p:inputText id="addSiteCurrentCapacity" value="#{siteController.newSite.currentCapacity}">
+                            <f:validateDoubleRange minimum="0"/>
+                        </p:inputText> />
+                        <p:message for="addSiteCurrentCapacity" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
                         
-                        <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
+                        <p:commandButton icon="ui-icon-search" update=":form:siteDT" value="Add Site" action="#{siteController.addSite}" validateClient="true" oncomplete="PF('msgs').show() PF('addSiteDialog').hide()" />
                         <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
                     </p:panelGrid>
                 </p:outputPanel>
@@ -125,22 +145,118 @@
         
         <!--Add Items To Selected Site -->
         <h:form id="addSiteItemsForm">
-        <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:dialog header="Assign Items to Site" widgetVar="addSiteItemsDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
                 
                 <p:outputPanel id="addSiteItems" style="text-align:center;" >
-                    <p:panelGrid  columns="2" cellPadding="2" columnClasses="label,value">
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
                             <h:outputText value="Add Items:" /> 
                         </f:facet>
                         
-                        <h:outputText for="addSiteItemsName" value="Item Name: " />
-                        <p:inputText id="addSiteItemsName" value="#{siteController.newSiteItem.item}" />
+                        <h:outputLabel for="addSiteItemsName" value="Item Name: " />
+                        <p:inputText id="addSiteItemsName" value="#{siteController.newSiteItem.item}" required="true" />
+                        <p:message for="addSiteItemsName" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
 
-                        <h:outputText for="addSiteItemsQty" value="Quantity: " />
+                        <h:outputLabel for="addSiteItemsQty" value="Quantity: " />
                         <p:inputText id="addSiteItemsQty" value="#{siteController.newSiteItem.quantity}" />
+                        <p:message for="addSiteItemsQty" />
+                        <h:outputText value="#{siteController.newSite.currentCapacity}" />
+                        
+                        <p:commandButton icon="ui-icon-plus" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
+                        
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
+        <!--Assign Site Manager-->
+        <h:form id="addSiteManagerForm">
+        <p:dialog header="Assign Site Manager" widgetVar="addSiteManagerDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                
+                <p:outputPanel id="addSiteManager" style="text-align:center;" rendered="#{not empty siteController.selectedSite}">
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value" >
+                        <f:facet name="header">
+                            <h:outputText value="Add Site Manager" /> 
+                        </f:facet>
+                        
+                        <h:outputLabel for="addSiteManagerName" value="Site Manager : " />
+                        <p:autoComplete id="addSiteManagerName" value="#{siteController.siteManager.firstName}" completeMethod="#{siteController.completeText}" />
 
-                        <p:commandButton icon="ui-icon-search" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
-                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                        <p:message for="addSiteManagerName" />
+                        <h:outputText value="#{siteController.siteManager.firstName}" />
+                        
+                        <p:commandButton icon="ui-icon-plus" update=":form:siteDT" value="Save Site Manager" action="#{siteController.addSiteManager()}" oncomplete="PF('msgs').show() PF('addSiteManagerDialog').hide()" />
+                        
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
+        <!--Supplier Information Form -->
+        <h1> Supplier Information </h1>
+        <h:form id="supplierForm">
+            <p:growl id="msgs2" showDetail="true" />
+            
+            <!--Supplier Information-->
+            <p:dataTable id="supplierDT" var="supplier" widgetVar="supplierDataTable" value="#{siteController.getSuppliers()}" selectionMode="single" selection="#{siteController.selectedSupplier}" rowKey="#{supplier.name}">
+                <f:facet name="header">
+                    Supplier Information
+                </f:facet>
+   
+                <p:ajax event="rowSelect" update=":supplierForm" />
+                
+                <p:column headerText="Name">
+                    <h:outputText value="#{supplier.name}" />
+                </p:column>
+                <p:column headerText="Rating">
+                    <h:outputText value="Readonly:" />
+                    <p:rating value="#{supplier.rating}" readonly="true" />
+                </p:column>
+                
+                <f:facet name="footer">
+                    <p:commandButton process="supplierDT" update=":supplierForm:blacklistedSupplierDetail" icon="ui-icon-search" value="View Blacklisted Suppliers" oncomplete="PF('blacklistedSuppliersDialog').show()" />
+                    <p:commandButton process="supplierDT" icon="ui-icon-cross" rendered="#{not empty siteController.selectedSupplier}" value="Blacklist Supplier" action="#{siteController.blacklistSupplier}" oncomplete="PF('blacklistDialog').show()" />
+                </f:facet>
+            </p:dataTable>
+            
+            <!--View Blacklisted Suppliers Popup -->
+            <p:dialog header="Blacklisted Suppliers" id="blacklistedSupplierDetail" widgetVar="blacklistedSuppliersDialog" style="text-align:center;">
+                    <p:dataTable var="blacklistedSupplier" value="#{siteController.getBlacklistedSuppliers()}" selectionMode="single" selection="#{siteController.blacklistedSupplier}" rowKey="#{blacklistedSupplier.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Blacklisted Suppliers:" /> 
+                        </f:facet>
+                        
+                            
+                            <p:column headerText="Supplier">
+                                <h:outputText value="#{blacklistedSupplier.supplier.getName()}" />
+                            </p:column>
+                            <p:column headerText="Reason">
+                                <h:outputText value="#{blacklistedSupplier.reason}" />
+                            </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Whitelist Supplier" oncomplete="PF('blacklistedSuppliersDialog').show()" action="#{siteController.whitelistSupplier()}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </p:dialog>
+        </h:form>
+        
+        <!--Blacklist reason popup form -->
+        <h:form id="blacklistSupplierForm">
+        <p:dialog header="Blacklist Supplier" widgetVar="blacklistDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                
+                <p:outputPanel id="blaclistSupplier" style="text-align:center;" >
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
+                        <f:facet name="header">
+                            <h:outputText value="Blacklist supplier: #{siteController.selectedSupplier.getName()}" /> 
+                        </f:facet>
+                        
+                        <h:outputLabel for="blacklistReason" value="Reason: " />
+                        <p:inputText id="blacklistReason" value="#{siteController.blacklistedSupplier.reason}" required="true" />
+
+                         <!--Button to Whitelist a supplier-->
+                        <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Submit" action="#{siteController.blacklistSupplier}" oncomplete="PF('msgs2').show() PF('blacklistDialog').hide()" />
+                        
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>

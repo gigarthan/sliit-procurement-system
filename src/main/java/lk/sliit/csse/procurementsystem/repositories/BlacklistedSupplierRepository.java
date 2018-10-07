@@ -15,21 +15,21 @@
  */
 package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.models.Site;
-import lk.sliit.csse.procurementsystem.models.SiteManager;
+import lk.sliit.csse.procurementsystem.models.BlacklistedSupplier;
+import lk.sliit.csse.procurementsystem.models.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Kiru
  */
-@Transactional
-public interface SiteRepository extends JpaRepository<Site, Long> {
+public interface BlacklistedSupplierRepository extends JpaRepository<BlacklistedSupplier, Long> {
     
+    //set BlackListed supplier;
     @Modifying
-    @Query("update Site s set s.siteManager = ?1 where s.siteId = ?2")
-    int setSiteManagerFor(SiteManager sitemanager, Long id);  //selected site manager, site id of site
+    @Query("update BlacklistedSupplier s set s.supplier = ?1 where s.id = ?2")
+    int setBlackListedFor(Supplier supplier, Long id);
+    
 }

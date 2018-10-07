@@ -16,5 +16,6 @@ public class Supplier extends User {
     private boolean blackListed;
     @ElementCollection
     private List<Items> items;
+    private Integer rating;
 
 }
