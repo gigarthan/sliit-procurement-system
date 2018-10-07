@@ -37,23 +37,12 @@ limitations under the License.
                 <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
 
                 <h:outputText value="Item name: " />
-                <p:autoComplete id="add-item-to-order-item-name" value="#{siteManagerController.itemName}" completeMethod="#{siteManagerController.completeText}" placeholder="Item Name" />
+                <p:autoComplete id="add-item-to-order-item-name" value="#{siteManagerController.itemList.itemId}" completeMethod="#{siteManagerController.completeText}" placeholder="Item Name" />
                 <h:outputText value="Quantity: " />
                 <p:inputText id="add-item-to-order-item-qty" value="#{siteManagerController.itemList.qty}" />
 
-                <p:commandButton id="add-item-to-order-submit" value="Add Items"  action="#{siteManagerController.addItemForOrder}" />
-                               <p:dataTable id="itemListTable" var="itemList" value="#{siteManagerController.getItemsForOrder()}" scrollable="true" scrollHeight="200" style="width: 50%">
-       
-
-            <p:column headerText="Item name">
-                <h:outputText value="#{itemList.itemId}" />
-            </p:column>
-
-            <p:column headerText="Item qty">
-                <h:outputText value="#{itemList.qty}" />
-            </p:column>
-
-        </p:dataTable>
+                <p:commandButton id="add-item-to-order-submit" value="Add Items"  update="itemListTable" action="#{siteManagerController.addItemForOrder}" />
+                            
             </h:panelGrid>
         </p:panel>
   <p:panel >
@@ -66,6 +55,8 @@ limitations under the License.
                 <p:commandButton id="add-order-submit" value="Add Order" update="orderTable" oncomplete="PF('addOrdersModal').hide()" action="#{siteManagerController.addOrder}" />
             </h:panelGrid>
                     </p:panel>
+        
+        
     </h:form>
 </p:dialog>
 </body>
