@@ -16,10 +16,10 @@
         <p:panel >
             <h:panelGrid columns="2" cellpadding="2">
                 <h:outputText value="Name: " />
-                <p:inputText id="update-item-name" value="#{supplyItemListController.itemList.name}" />
+                <p:inputText id="update-item-name" value="#{supplyItemListController.supplyMaterial.name}" />
 
                 <h:outputText value="Category: " />
-                <p:selectOneMenu id="update-item-category" value="#{supplyItemListController.itemList.category}" style="width:145px">
+                <p:selectOneMenu id="update-item-category" value="#{supplyItemListController.supplyMaterial.category}" style="width:145px">
                     <f:selectItem itemLabel="Others" itemValue="Others" noSelectionOption="true" />
                     <f:selectItem itemLabel="Appliances" itemValue="Appliances" />
                     <f:selectItem itemLabel="Bathroom" itemValue="Bathroom" />
@@ -44,10 +44,10 @@
                 
               
                 <h:outputText value="Description: " />
-                <p:inputText id="update-item-description" value="#{supplyItemListController.itemList.description}" />
+                <p:inputText id="update-item-description" value="#{supplyItemListController.supplyMaterial.description}" />
 
                 <h:outputText value="Price: " />
-                <p:inputText id="update-item-price" value="#{supplyItemListController.itemList.price}" />
+                <p:inputText id="update-item-price" value="#{supplyItemListController.supplyMaterial.price}" />
                 
                 <p:commandButton id="update-item" value="Update" ajax="false" action="#{supplyItemListController.addNewItem()}" />
             </h:panelGrid>

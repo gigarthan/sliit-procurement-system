@@ -20,19 +20,19 @@
                 <h:form id="myForm">
                 <p:dataTable var="itemList" style="width: 750px" value="#{supplyItemListController.getItem()}">
                     <p:column headerText="ID">
-                        <h:outputText value="#{itemList.itemId}" />
+                        <h:outputText value="#{supplyMaterial.itemId}" />
                     </p:column>
                     <p:column headerText="Name">
-                        <h:outputText id="itemName" value="#{itemList.name}" />
+                        <h:outputText id="itemName" value="#{supplyMaterial.name}" />
                     </p:column>
                     <p:column headerText="Category">
-                        <h:outputText value="#{itemList.category}" />
+                        <h:outputText value="#{supplyMaterial.category}" />
                     </p:column>
                     <p:column headerText="Description">
-                        <h:outputText value="#{itemList.description}" />
+                        <h:outputText value="#{supplyMaterial.description}" />
                     </p:column>
                     <p:column headerText="Price">
-                        <h:outputText value="#{itemList.price}" />
+                        <h:outputText value="#{supplyMaterial.price}" />
                     </p:column>
                     
                     <p:column headerText="Update">

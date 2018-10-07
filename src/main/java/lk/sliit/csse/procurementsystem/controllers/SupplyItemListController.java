@@ -19,20 +19,16 @@ package lk.sliit.csse.procurementsystem.controllers;
 import java.io.IOException;
 import javax.faces.event.ActionEvent;
 import java.util.List;
-import java.util.Optional;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
-import lk.sliit.csse.procurementsystem.models.AccountingStaff;
-import lk.sliit.csse.procurementsystem.models.SupplyItemList;
-import lk.sliit.csse.procurementsystem.repositories.AccountingStaffRepository;
+import lk.sliit.csse.procurementsystem.models.SupplyMaterial;
 import lk.sliit.csse.procurementsystem.repositories.ReceiptItemRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import lk.sliit.csse.procurementsystem.repositories.SupplyItemListRepository;
+import lk.sliit.csse.procurementsystem.repositories.SupplyMaterialRepository;
 
 /**
  *
@@ -43,26 +39,26 @@ import lk.sliit.csse.procurementsystem.repositories.SupplyItemListRepository;
 @Named
 public class SupplyItemListController {
     
-    public SupplyItemList itemList = new SupplyItemList();
+    public SupplyMaterial supplyMaterial = new SupplyMaterial();
     
     @Autowired
-    private SupplyItemListRepository itemRepository;
+    private SupplyMaterialRepository supplyMaterialRepository;
     
     @Autowired
     private ReceiptItemRepository receiptItemRepository;
     
 
     public void addNewItem() {
-        itemRepository.save(itemList); 
-        this.itemList = new SupplyItemList();
+        supplyMaterialRepository.save(supplyMaterial); 
+        this.supplyMaterial = new SupplyMaterial();
     }
     
-    public List<SupplyItemList> getItem() {
-        return itemRepository.findAll();
+    public List<SupplyMaterial> getItem() {
+        return supplyMaterialRepository.findAll();
     }
     
     public void deleteItem(long id) throws IOException {
-        itemRepository.deleteById(id);
+        supplyMaterialRepository.deleteById(id);
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }

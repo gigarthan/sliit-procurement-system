@@ -19,56 +19,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Vithu
  */
 @Entity
-public class ReceiptItem {
+public class ReceiptMaterial {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+    //
     private long receiptId;
-
     private String itemName;
-    
     private int qty;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public long getReceiptId() {
-        return receiptId;
-    }
-
-    public void setReceiptId(long receiptId) {
-        this.receiptId = receiptId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
     
-
 }

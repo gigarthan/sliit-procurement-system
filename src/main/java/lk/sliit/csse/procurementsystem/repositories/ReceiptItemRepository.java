@@ -15,7 +15,7 @@
  */
 package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.models.ReceiptItem;
+import lk.sliit.csse.procurementsystem.models.ReceiptMaterial;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Vithu
  */
 @Transactional
-public interface ReceiptItemRepository <T extends ReceiptItem> extends JpaRepository<T, Long> {
+public interface ReceiptItemRepository <T extends ReceiptMaterial> extends JpaRepository<T, Long> {
 
 }
