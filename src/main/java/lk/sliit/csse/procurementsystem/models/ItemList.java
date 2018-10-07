@@ -18,7 +18,7 @@ public class ItemList {
     private long reqOrderNo;
     private int itemId;
     private int qty;
-    
+       
     public int getRelavantItemId(String itemId){
         return (int) (Math.random()*100);
     }
