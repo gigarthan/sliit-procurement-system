@@ -43,7 +43,7 @@
                     <h:outputText value="#{site.currentCapacity}" />
                 </p:column>
                 <p:column headerText="Site Manager">
-                   <h:outputText value="#{empty site.siteManager ? 'Not' : site.siteManager.firstName}" />
+                   <h:outputText value="#{empty site.siteManager ? 'Not Assigned' : (''.concat(site.siteManager.firstName).concat(' ').concat(site.siteManager.lastName))}" />
                 </p:column>
                 
                 <f:facet name="footer">
