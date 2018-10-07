@@ -34,6 +34,11 @@
             <p:column headerText="Last Name">
                 <h:outputText value="#{accountingStaff.lastName}" />
             </p:column>
+            <p:column>
+                <h:form>
+                    <p:commandButton styleClass="proc-del-btn" value="Delete" ajax="false" action="#{managementController.deleteAccountingStaff(accountingStaff)}" />
+                </h:form>
+            </p:column>
         </p:dataTable>
     </ui:define>
 </ui:composition>
