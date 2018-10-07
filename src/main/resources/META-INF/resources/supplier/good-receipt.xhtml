@@ -17,22 +17,28 @@
         <p:commandButton value="Add Good Receipt" type="button" onclick="PF('addGoodReceipt').show();" />
         <ui:include src="add_good-receipt.xhtml" />
         
-        <p:dataTable var="goodReceipt" style="width: 200px" value="#{managementController.getAccountingStaffs()}">
-            <p:column headerText="Purchase Order Reference">
-                <h:outputText value="#{accountingStaff.id}" />
+        <p:dataTable var="goodReceipt" style="width: 800px" value="#{goodReceiptController.getReceipt()}">
+            <p:column headerText="Good-Receipt Id">
+                <h:outputText value="#{goodReceipt.receiptId}" />
             </p:column>
-        </p:dataTable>
-        
-        <p:dataTable var="goodReceipt" style="width: 200px" value="#{managementController.getAccountingStaffs()}">
+
+            <p:column headerText="Purchase Order Reference">
+                <h:outputText value="#{goodReceipt.orderRefer}" />
+            </p:column>
+            
             <p:column headerText="Delivery Date">
-                <h:outputText value="#{accountingStaff.id}" />
-                </p:column>
-        </p:dataTable>
+                <h:outputText value="#{goodReceipt.deliverDate}" />
+            </p:column>
         
-        <p:dataTable var="goodReceipt" style="width: 200px" value="#{managementController.getAccountingStaffs()}">
-            <p:column headerText="Items">
-                <h:outputText value="#{accountingStaff.id}" />
-                </p:column>
+            <p:column headerText="Receipt Status">
+                <h:outputText value="#{goodReceipt.receiptStatus}" />
+            </p:column>
+            
+            <p:column headerText="Add Item">
+                <p:commandButton value="Add" actionListener="#{supplyItemListController.updateItem(itemList.itemId)}" onclick="PF('addReceiptItem').show();" />
+                <ui:include id="add" src="add-receipt-item.xhtml" />
+            </p:column>
+            
         </p:dataTable>
         
     </ui:define>

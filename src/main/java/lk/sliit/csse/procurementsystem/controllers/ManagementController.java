@@ -68,5 +68,9 @@ public class ManagementController {
         siteManagerRepository.delete(sm);
     }
 
+    public void deleteAccountingStaff(AccountingStaff as) { accountingStaffRepository.delete(as); }
+
+    public void deleteProcurementStaff(ProcurementStaff ps) { procurementStaffRepository.delete(ps); }
+
 
 }
