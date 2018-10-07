@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import lk.sliit.csse.procurementsystem.models.AccountingStaff;
 import lk.sliit.csse.procurementsystem.models.SupplyItemList;
 import lk.sliit.csse.procurementsystem.repositories.AccountingStaffRepository;
+import lk.sliit.csse.procurementsystem.repositories.ReceiptItemRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import lk.sliit.csse.procurementsystem.repositories.SupplyItemListRepository;
@@ -46,6 +47,9 @@ public class SupplyItemListController {
     
     @Autowired
     private SupplyItemListRepository itemRepository;
+    
+    @Autowired
+    private ReceiptItemRepository receiptItemRepository;
     
 
     public void addNewItem() {
