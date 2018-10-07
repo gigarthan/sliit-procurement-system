@@ -16,25 +16,19 @@
         <p:panel >
             <h:panelGrid columns="2" cellpadding="2">
                 <h:outputText value="Purchase Order Reference: " />
-                <p:inputText id="add-purchase-order-reference" value="#{managementController.siteManager.firstName}" />
+                <p:inputText id="add-purchase-order-reference" value="#{goodReceiptController.goodReceipt.orderRefer}" />
 
                 <h:outputText value="Delivery Date: " />
-                <p:inputText id="add-delivery-date" value="#{managementController.siteManager.lastName}" />
+                <p:inputMask id="add-delivery-date" value="#{goodReceiptController.goodReceipt.deliverDate}" mask="99/99/9999" />
                 
-                <h:outputText value="Items: " />
-                <p:inputText id="items" value="#{managementController.siteManager.address}" />
-                <h:outputText value="Quantity " />
-                <p:inputText id="qty" value="#{managementController.siteManager.address}" />
+                <h:outputText value="Receipt Status: " />
+                <p:selectOneMenu id="add-item-category" value="#{goodReceiptController.goodReceipt.receiptStatus}" style="width:145px">
+                    <f:selectItem itemLabel="Pending" itemValue="Pending" noSelectionOption="true" />
+                    <f:selectItem itemLabel="Delivery Accepted" itemValue="Delivery Accepted" />
+                    <f:selectItem itemLabel="Delivery Declined" itemValue="Delivery Declined" />
+                </p:selectOneMenu>
                 
-                <p:commandButton id="add-textfield" value="+" ajax="false" />
-
-<!--                <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
-                    <p:ajax listener="" update="" />
-                    <f:selectItem itemLabel="Select Status" itemValue="" noSelectionOption="true" />
-                    <f:selectItems value="#{dropdownView.countries}" />
-                </p:selectOneMenu>-->
-                
-                <p:commandButton id="submit-receipt" value="Insert" ajax="false" action="#{managementController.addNewManager}" />
+                <p:commandButton id="submit-receipt" value="Insert" ajax="false" action="#{goodReceiptController.addNewReceipt()}" />
             </h:panelGrid>
         </p:panel>
 

@@ -15,7 +15,7 @@
  */
 package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.models.ItemList;
+import lk.sliit.csse.procurementsystem.models.SupplyItemList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Vithu
  */
 @Transactional
-public interface ItemListRepository  <T extends ItemList> extends JpaRepository<T, Long> {
+public interface SupplyItemListRepository  <T extends SupplyItemList> extends JpaRepository<T, Long> {
 
 }

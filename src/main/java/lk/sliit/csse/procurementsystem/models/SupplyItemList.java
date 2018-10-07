@@ -20,18 +20,17 @@ package lk.sliit.csse.procurementsystem.models;
  * @author Vithu
  */
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 
 @Entity
-public class ItemList implements Serializable {
+public class SupplyItemList {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long itemId;
     //
-    private int supId;
+    private int supId = 1;
     private String name;
     private String category;
     private String description;
