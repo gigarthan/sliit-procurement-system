@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lk.sliit.csse.procurementsystem.services;
+package lk.sliit.csse.procurementsystem.repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import lk.sliit.csse.procurementsystem.repositories.MaterialRequestRepository;
+import lk.sliit.csse.procurementsystem.models.ReceiptMaterial;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Marjan
+ * @author Vithu
  */
-@Service("orderService")
-public class OrderService {
-    @Autowired
-    private MaterialRequestRepository materialRequestRepository;
+@Transactional
+public interface ReceiptMaterialRepository <T extends ReceiptMaterial> extends JpaRepository<T, Long>{
+    
 }

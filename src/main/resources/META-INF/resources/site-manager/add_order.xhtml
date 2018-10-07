@@ -14,76 +14,50 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-/*
-Orders(orderRef, orderedDate, endDate, siteMangerId, siteManagerStatus, managementStatus, supplierId,supplierStatus, totalPrice)
-Ordered_Items(itemId, orderRef, itemQty)
-Items(itemId, itemName, categoryId, price)
-Category(categoryId, name)
- */
-
 -->
 <!DOCTYPE html>
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xml:lang="en" lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui = "http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:sec="http://www.springframework.org/security/tags">
-    <head>
-        <title>add order</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>Add new order</div>
-        <p:dialog header="Add Order" widgetVar="addOrderModal" showEffect="fade" hideEffect="fade" >
+<head>
+    <title>Title</title>
+</head>
+<body>
+<p:dialog header="Add Orders" widgetVar="addOrdersModal" showEffect="fade" hideEffect="fade" >
     <h:form id="add-order-form">
+        
 
-        <p:panel >
+              <p:panel >
             <h:panelGrid columns="2" cellpadding="4">
-                 <h:outputText value="Supplier Name " />
-                <p:inputText id="order-ref" value="#{siteManagerController.getOrderById}" />
-                
-                <h:outputText value="Supplier Name " />
-                <p:inputMask id="add-order-item-name" mask="{999}" value="#{siteManagerController.order.supplierId}" />
+                  <h:outputText value="Order Request Id: " />
+                <p:inputText id="add-order-req-order-no" value="OR#{siteManagerController.getNextReqOrderNo()}" readonly="true"/>
 
-                <h:outputText value="Item Qty " />
-                <p:inputText id="add-order-qty" required="true" value="#{siteManagerController.order.itemQty}" />
-                
-                 <h:outputText value="Site manager Id " />
-                <p:inputText id="site-manager-id" value="#{siteManagerController.order.siteMangerId}" />
+                <h:outputText value="Item name: " />
+                <p:autoComplete id="add-item-to-order-item-name" value="#{siteManagerController.itemList.itemId}" completeMethod="#{siteManagerController.completeText}" placeholder="Item Name" />
+                <h:outputText value="Quantity: " />
+                <p:inputText id="add-item-to-order-item-qty" value="#{siteManagerController.itemList.qty}" />
 
-                <h:outputText value="End date: " />
-                <p:calendar id="add-order-end-date" value="#{siteManagerController.order.endDate}"  mode="popup" />
-                   
-                <h:outputText value="Order date: " />
-                <p:calendar id="add-order-order-date" value="#{siteManagerController.order.orderedDate}" mode="popup" />
-                   
-                <h:outputText value="Total price" />
-                <p:inputText id="total-price" value="#{siteManagerController.order.totalPrice}" />
-
-                
-                
-                
-                
-<!--    private Date orderedDate;
-    private Date endDate;
-    private int siteMangerId;
-    private String siteManagerStatus;
-    private String managementStatus;
-    private String supplierStatus;-->
-                <p:commandButton id="add-order-submit" value="Submit Order" ajax="false" action="#{siteManagerController.addOrder}" />
+                <p:commandButton id="add-item-to-order-submit" value="Add Items"  update="itemListTable" action="#{siteManagerController.addItemForOrder}" />
                             
-                
-                
-
-               
-
             </h:panelGrid>
         </p:panel>
+  <p:panel >
+            <h:panelGrid columns="2" cellpadding="4">
+                
+              
+                <h:outputText value="endDate: " />
+                <p:calendar id="add-order-end-date" value="#{siteManagerController.materialRequest.endDate}" mode="popup" mindate="#{siteManagerController.getTodayDate()}"/>
 
+                <p:commandButton id="add-order-submit" value="Add Order" update="orderTable" oncomplete="PF('addOrdersModal').hide()" action="#{siteManagerController.addOrder}" />
+            </h:panelGrid>
+                    </p:panel>
+        
+        
     </h:form>
 </p:dialog>
-    </body>
+</body>
 </html>

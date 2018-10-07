@@ -15,17 +15,15 @@
  */
 package lk.sliit.csse.procurementsystem.repositories;
 
-import lk.sliit.csse.procurementsystem.models.Category;
+import lk.sliit.csse.procurementsystem.models.SupplyMaterial;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Marjan
+ * @author Vithu
  */
 @Transactional
-@NoRepositoryBean
-public interface CategoryRepository<T extends Category> extends JpaRepository {
+public interface SupplyMaterialRepository <T extends SupplyMaterial> extends JpaRepository<T, Long> {
     
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<body>
+<p:dialog header="Add Item To Receipt" widgetVar="addReceiptItem" showEffect="fade" hideEffect="fade" >
+    <h:form id="add-receipt-item">
+
+        <p:panel style="width: 400px; height: 200px" >
+            <h:panelGrid columns="2" cellpadding="2">
+                
+                <p:dataTable var="receiptMaterial" style="width: 750px" value="#{goodReceiptController.getReceiptItem()}">
+                    <p:column headerText="Item Name">
+                        <h:outputText value="#{goodReceiptController.receiptMaterial.itemName}" />
+                    </p:column>
+                    <p:column headerText="Quantity">
+                        <h:outputText id="itemName" value="#{goodReceiptController.receiptMaterial.qty}" />
+                    </p:column>
+                </p:dataTable>>
+                
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</p:dialog>
+
+    </body>
+</html>
+

@@ -27,6 +27,12 @@ import javax.persistence.*;
 @Entity(name="Items")
 @Table(name="items")
 public class Items {
+    public Items(){}
+    
+    public Items(String itemName,int itemQty){
+        
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int itemId;
