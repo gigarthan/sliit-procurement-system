@@ -21,12 +21,16 @@ import java.util.StringTokenizer;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import lk.sliit.csse.procurementsystem.models.BlacklistedSupplier;
 import lk.sliit.csse.procurementsystem.models.Site;
 import lk.sliit.csse.procurementsystem.models.SiteItem;
 import lk.sliit.csse.procurementsystem.models.SiteManager;
+import lk.sliit.csse.procurementsystem.models.Supplier;
+import lk.sliit.csse.procurementsystem.repositories.BlacklistedSupplierRepository;
 import lk.sliit.csse.procurementsystem.repositories.SiteItemRepository;
 import lk.sliit.csse.procurementsystem.repositories.SiteManagerRepository;
 import lk.sliit.csse.procurementsystem.repositories.SiteRepository;
+import lk.sliit.csse.procurementsystem.repositories.SupplierRepository;
 import lombok.Data;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +43,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Data
 public class SiteController {
     
+    //Site and SiteItem
     private Site selectedSite;
     private Site newSite = new Site();
     private SiteItem newSiteItem = new SiteItem();
     private SiteManager siteManager = new SiteManager();
     
+    //Supplier
+    private Supplier selectedSupplier;
+    private BlacklistedSupplier blacklistedSupplier = new BlacklistedSupplier();
     
     @Autowired
     private SiteRepository siteRepository;
@@ -53,6 +61,12 @@ public class SiteController {
     
     @Autowired
     private SiteManagerRepository siteManagerRepository;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
+    
+    @Autowired
+    private BlacklistedSupplierRepository blacklistedSupplierRepository;
     
     
     public List<Site> getSites(){      
@@ -116,4 +130,25 @@ public class SiteController {
         siteRepository.setSiteManagerFor(selSiteManager, selectedSite.getSiteId());
     }
     
+    
+    //Get Whitelisted suppliers
+    public List<Supplier> getSuppliers() {
+      return supplierRepository.findByBlackListedFalse();
+    }
+    
+    //Get Blacklisted Suppliers
+    public List<BlacklistedSupplier> getBlacklistedSuppliers() {
+      return blacklistedSupplierRepository.findAll();
+    }
+    
+    //Blacklist a supplier
+    public void blacklistSupplier() {
+        blacklistedSupplierRepository.save(blacklistedSupplier);
+    }
+    
+    //Whitelist a Supplier
+    public void whitelistSupplier() {
+        selectedSupplier.setBlackListed(false);
+        supplierRepository.setBlackListedFor(selectedSupplier, selectedSupplier.getName());
+    }
 }

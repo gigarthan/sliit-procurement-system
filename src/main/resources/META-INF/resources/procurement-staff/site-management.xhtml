@@ -194,6 +194,75 @@
                 </p:outputPanel>
             </p:dialog>
         </h:form>
+        
+        <!--Supplier Information Form -->
+        <h1> Supplier Information </h1>
+        <h:form id="supplierForm">
+            <p:growl id="msgs2" showDetail="true" />
+            
+            <!--Supplier Information-->
+            <p:dataTable id="supplierDT" var="supplier" widgetVar="supplierDataTable" value="#{siteController.getSuppliers()}" selectionMode="single" selection="#{siteController.selectedSupplier}" rowKey="#{supplier.name}">
+                <f:facet name="header">
+                    Supplier Information
+                </f:facet>
+   
+                <p:ajax event="rowSelect" update=":supplierForm" />
+                
+                <p:column headerText="Name">
+                    <h:outputText value="#{supplier.name}" />
+                </p:column>
+                <p:column headerText="Rating">
+                    <h:outputText value="Readonly:" />
+                    <p:rating value="#{supplier.rating}" readonly="true" />
+                </p:column>
+                
+                <f:facet name="footer">
+                    <p:commandButton process="supplierDT" update=":supplierForm:blacklistedSupplierDetail" icon="ui-icon-search" value="View Blacklisted Suppliers" oncomplete="PF('blacklistedSuppliersDialog').show()" />
+                    <p:commandButton process="supplierDT" icon="ui-icon-cross" rendered="#{not empty siteController.selectedSupplier}" value="Blacklist Supplier" oncomplete="PF('blacklistDialog').show()" />
+                </f:facet>
+            </p:dataTable>
+            
+            <!--View Blacklisted Suppliers Popup -->
+            <p:dialog header="Blacklisted Suppliers" id="blacklistedSupplierDetail" widgetVar="blacklistedSuppliersDialog" style="text-align:center;">
+                    <p:dataTable var="blacklistedSupplier" value="#{siteController.getBlacklistedSuppliers()}" selectionMode="single" selection="#{siteController.selectedSupplier}" rowKey="#{blacklistedSupplier.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Blacklisted Suppliers:" /> 
+                        </f:facet>
+                            <p:column headerText="Supplier">
+                                <h:outputText value="#{blacklistedSupplier.supplier}" />
+                            </p:column>
+                            <p:column headerText="Reason">
+                                <h:outputText value="#{blacklistedSupplier.reason}" />
+                            </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton icon="ui-icon-plus" rendered="#{not empty siteController.blacklistedSupplier.supplier}" update=":supplierForm:blacklistedSupplierDetail" value="Whitelist Supplier" oncomplete="PF('blacklistedSuppliersDialog').show()" action="#{siteController.whitelistSupplier()}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </p:dialog>
+        </h:form>
+        
+        <!--Blacklist reason popup form -->
+        <h:form id="blacklistSupplierForm">
+        <p:dialog header="Blacklist Supplier" widgetVar="blacklistDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" >
+                
+                <p:outputPanel id="blaclistSupplier" style="text-align:center;" >
+                    <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
+                        <f:facet name="header">
+                            <h:outputText value="Blacklist supplier:" /> 
+                        </f:facet>
+                        
+                        <h:outputLabel for="blacklistReason" value="Reason: " />
+                        <p:inputText id="blacklistReason" value="#{siteController.blacklistedSupplier.reason}" required="true" />
+                        <p:message for="blacklistReason" />
+                        <h:outputText value="#{siteController.blacklistedSupplier.reason}" />
+
+                        <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Submit" action="#{siteController.blacklistSupplier}" oncomplete="PF('msgs2').show() PF('blacklistDialog').hide()" />
+                        
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        
     </ui:define>
 </ui:composition>
 </body>
