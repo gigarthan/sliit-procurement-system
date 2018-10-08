@@ -94,7 +94,6 @@ public class SiteController {
     }
     
     public List<String> completeText(String query) {
-//        List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameEndsWith(query);
         
         List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameContainingOrLastnameContaining(query, query);
 
@@ -108,7 +107,6 @@ public class SiteController {
     
     //Add site manager
     public void addSiteManager(){
-//        SiteManager selSiteManager = siteManagerRepository.findByFirstName(siteManager.getFirstName());
         String result = siteManager.getFirstName();
         StringTokenizer name = new StringTokenizer(result, " ");
         String firstName = name.nextToken();
