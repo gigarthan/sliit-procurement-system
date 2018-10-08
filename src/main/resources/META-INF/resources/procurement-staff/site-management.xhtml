@@ -164,7 +164,7 @@
                         <h:outputText value="#{siteController.newSite.currentCapacity}" />
                         
                         <p:commandButton icon="ui-icon-plus" update=":form:siteItemsDetail" value="Add Item" action="#{siteController.addSiteItem}" oncomplete="PF('msgs').show() PF('addSiteItemsDialog').hide()" />
-                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                        
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
@@ -183,13 +183,12 @@
                         <h:outputLabel for="addSiteManagerName" value="Site Manager : " />
                         <p:outputLabel value="Simple:" for="addSiteManagerName" />
                         <p:autoComplete id="addSiteManagerName" value="#{siteController.siteManager.firstName}" completeMethod="#{siteController.completeText}" />
- 
-                        <!--<p:inputText id="addSiteManagerName" value="{siteController.siteManager.firstName}" required="true" />-->
+
                         <p:message for="addSiteManagerName" />
                         <h:outputText value="#{siteController.siteManager.firstName}" />
                         
                         <p:commandButton icon="ui-icon-plus" update=":form:siteDT" value="Save Site Manager" action="#{siteController.addSiteManager()}" oncomplete="PF('msgs').show() PF('addSiteManagerDialog').hide()" />
-                        <!--Above :form:siteDT means in component with id=form, a component with id="siteDT", update that one -->
+                        
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>
