@@ -143,12 +143,16 @@ public class SiteController {
     
     //Blacklist a supplier
     public void blacklistSupplier() {
+        selectedSupplier.setBlackListed(true);
+        Boolean isBlacklisted = selectedSupplier.isBlackListed();
+        supplierRepository.setBlackListedFor(isBlacklisted, selectedSupplier.getName());
         blacklistedSupplierRepository.save(blacklistedSupplier);
     }
     
     //Whitelist a Supplier
     public void whitelistSupplier() {
         selectedSupplier.setBlackListed(false);
-        supplierRepository.setBlackListedFor(selectedSupplier, selectedSupplier.getName());
+        Boolean isBlacklisted = selectedSupplier.isBlackListed();
+        supplierRepository.setBlackListedFor(isBlacklisted, selectedSupplier.getName());
     }
 }

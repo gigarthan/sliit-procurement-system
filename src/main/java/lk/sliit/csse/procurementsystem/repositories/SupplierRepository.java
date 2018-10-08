@@ -9,10 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
+    //Returns only non-blacklisted suppliers
     List<Supplier> findByBlackListedFalse();
     
     //set BlackListed = true/false;
     @Modifying
     @Query("update Supplier s set s.blackListed = ?1 where s.name = ?2")
-    int setBlackListedFor(Supplier supplier, String name);
+    int setBlackListedFor(Boolean isBlacklisted, String name);
 }

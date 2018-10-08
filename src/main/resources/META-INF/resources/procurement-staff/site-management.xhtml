@@ -218,7 +218,7 @@
                 
                 <f:facet name="footer">
                     <p:commandButton process="supplierDT" update=":supplierForm:blacklistedSupplierDetail" icon="ui-icon-search" value="View Blacklisted Suppliers" oncomplete="PF('blacklistedSuppliersDialog').show()" />
-                    <p:commandButton process="supplierDT" icon="ui-icon-cross" rendered="#{not empty siteController.selectedSupplier}" value="Blacklist Supplier" oncomplete="PF('blacklistDialog').show()" />
+                    <p:commandButton process="supplierDT" icon="ui-icon-cross" rendered="#{not empty siteController.selectedSupplier}" value="Blacklist Supplier" action="#{siteController.blacklistSupplier}" oncomplete="PF('blacklistDialog').show()" />
                 </f:facet>
             </p:dataTable>
             
@@ -248,7 +248,7 @@
                 <p:outputPanel id="blaclistSupplier" style="text-align:center;" >
                     <p:panelGrid  columns="4" cellPadding="2" columnClasses="label,value">
                         <f:facet name="header">
-                            <h:outputText value="Blacklist supplier:" /> 
+                            <h:outputText value="Blacklist supplier: #{siteController.selectedSupplier.getName()}" /> 
                         </f:facet>
                         
                         <h:outputLabel for="blacklistReason" value="Reason: " />
