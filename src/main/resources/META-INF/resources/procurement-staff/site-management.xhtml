@@ -224,7 +224,7 @@
             
             <!--View Blacklisted Suppliers Popup -->
             <p:dialog header="Blacklisted Suppliers" id="blacklistedSupplierDetail" widgetVar="blacklistedSuppliersDialog" style="text-align:center;">
-                    <p:dataTable var="blacklistedSupplier" value="#{siteController.getBlacklistedSuppliers()}" selectionMode="single" selection="#{siteController.selectedSupplier}" rowKey="#{blacklistedSupplier.id}">
+                    <p:dataTable var="blacklistedSupplier" value="#{siteController.getBlacklistedSuppliers()}" selectionMode="single" selection="#{siteController.blacklistedSupplier}" rowKey="#{blacklistedSupplier.id}">
                         <f:facet name="header">
                             <h:outputText value="Blacklisted Suppliers:" /> 
                         </f:facet>

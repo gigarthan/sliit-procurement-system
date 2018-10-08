@@ -153,8 +153,15 @@ public class SiteController {
     
     //Whitelist a Supplier
     public void whitelistSupplier() {
-        selectedSupplier.setBlackListed(false);
-        Boolean isBlacklisted = selectedSupplier.isBlackListed();
-        supplierRepository.setBlackListedFor(isBlacklisted, selectedSupplier.getName());
+//        selectedSupplier.setBlackListed(false);
+//        Boolean isBlacklisted = selectedSupplier.isBlackListed();
+//        supplierRepository.setBlackListedFor(isBlacklisted, selectedSupplier.getName());
+        
+        
+        blacklistedSupplier.getSupplier().setBlackListed(false);
+        Boolean isBlacklisted = blacklistedSupplier.getSupplier().isBlackListed();
+        supplierRepository.setBlackListedFor(isBlacklisted, blacklistedSupplier.getSupplier().getName());
+
+        blacklistedSupplierRepository.deleteById(blacklistedSupplier.getId());
     }
 }
