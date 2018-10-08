@@ -255,8 +255,6 @@
                         
                         <h:outputLabel for="blacklistReason" value="Reason: " />
                         <p:inputText id="blacklistReason" value="#{siteController.blacklistedSupplier.reason}" required="true" />
-                        <p:message for="blacklistReason" />
-                        <h:outputText value="#{siteController.blacklistedSupplier.reason}" />
 
                          <!--Button to Whitelist a supplier-->
                         <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Submit" action="#{siteController.blacklistSupplier}" oncomplete="PF('msgs2').show() PF('blacklistDialog').hide()" />
