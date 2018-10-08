@@ -17,6 +17,7 @@ package lk.sliit.csse.procurementsystem.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -93,11 +94,13 @@ public class SiteController {
     }
     
     public List<String> completeText(String query) {
-        List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameEndsWith(query);
+//        List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameEndsWith(query);
         
+        List<SiteManager> siteManagers = siteManagerRepository.findByFirstnameContainingOrLastnameContaining(query, query);
+
         List<String> results = new ArrayList<>();
         for(SiteManager s : siteManagers) {
-            results.add(s.getFirstName());
+            results.add((s.getFirstName() + " " + s.getLastName()));
         }
          
         return results;
@@ -105,8 +108,13 @@ public class SiteController {
     
     //Add site manager
     public void addSiteManager(){
-        SiteManager selSiteManager = siteManagerRepository.findByFirstName(siteManager.getFirstName());
-        
+//        SiteManager selSiteManager = siteManagerRepository.findByFirstName(siteManager.getFirstName());
+        String result = siteManager.getFirstName();
+        StringTokenizer name = new StringTokenizer(result, " ");
+        String firstName = name.nextToken();
+        String lastName = name.nextToken();
+        SiteManager selSiteManager = siteManagerRepository.findByFirstNameAndLastName(firstName, lastName);
+       
         siteRepository.setSiteManagerFor(selSiteManager, selectedSite.getSiteId());
     }
     
