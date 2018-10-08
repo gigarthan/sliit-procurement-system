@@ -146,6 +146,8 @@ public class SiteController {
         selectedSupplier.setBlackListed(true);
         Boolean isBlacklisted = selectedSupplier.isBlackListed();
         supplierRepository.setBlackListedFor(isBlacklisted, selectedSupplier.getName());
+        
+        blacklistedSupplier.setSupplier(selectedSupplier);
         blacklistedSupplierRepository.save(blacklistedSupplier);
     }
     

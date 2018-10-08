@@ -228,14 +228,16 @@
                         <f:facet name="header">
                             <h:outputText value="Blacklisted Suppliers:" /> 
                         </f:facet>
+                        
+                            
                             <p:column headerText="Supplier">
-                                <h:outputText value="#{blacklistedSupplier.supplier}" />
+                                <h:outputText value="#{blacklistedSupplier.supplier.getName()}" />
                             </p:column>
                             <p:column headerText="Reason">
                                 <h:outputText value="#{blacklistedSupplier.reason}" />
                             </p:column>
                         <f:facet name="footer">
-                            <p:commandButton icon="ui-icon-plus" rendered="#{not empty siteController.blacklistedSupplier.supplier}" update=":supplierForm:blacklistedSupplierDetail" value="Whitelist Supplier" oncomplete="PF('blacklistedSuppliersDialog').show()" action="#{siteController.whitelistSupplier()}"/>
+                            <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Whitelist Supplier" oncomplete="PF('blacklistedSuppliersDialog').show()" action="#{siteController.whitelistSupplier()}"/>
                         </f:facet>
                     </p:dataTable>
             </p:dialog>
@@ -256,6 +258,7 @@
                         <p:message for="blacklistReason" />
                         <h:outputText value="#{siteController.blacklistedSupplier.reason}" />
 
+                         <!--Button to Whitelist a supplier-->
                         <p:commandButton icon="ui-icon-plus" update=":supplierForm:blacklistedSupplierDetail" value="Submit" action="#{siteController.blacklistSupplier}" oncomplete="PF('msgs2').show() PF('blacklistDialog').hide()" />
                         
                     </p:panelGrid>
